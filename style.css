@@ -1,0 +1,295 @@
+/* - - - - - Estilos pág - - - - - */
+
+* {
+    box-sizing: border-box;
+    margin: unset;
+    padding: unset;
+    border: unset;
+    outline: unset;
+    list-style: none;
+    text-decoration: none;
+}
+
+.Navbar_nav button {
+    background-color: #04BF68;
+    color: white;
+    font-size: 17px;
+    font-family: Inter;
+    font-weight: bold;
+    border-radius: 15px;
+    border: unset;
+    width: 162px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    color: #030C26;
+    transform: scale(1.1);
+}
+
+p {
+    font-size: 17;
+    font-family: Kdam Thmor Pro;
+}
+
+.blue-text {
+    color: #030C26;
+}
+
+.white-text {
+    color: white;
+    padding-bottom: 25px;
+}
+
+.dark-text {
+    color: #000000;
+}
+
+ul li {
+    color: white;
+    font-family: Kdam Thmor Pro;
+}
+
+
+body {
+    background-color: #030C26;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* - - - - - Navbar - - - - - */
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 50px;
+}
+
+header nav ul {
+    display: flex;
+    gap: 70px;
+}
+
+.Navbar_nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    text-transform: uppercase;
+    color: grey;
+}
+
+.Navbar_nav ul li {
+    padding: 0 .5em .25em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.Navbar_nav ul li:hover {
+    color: #fff;
+}
+
+.Navbar_nav ul li:before {
+    content: "";
+    position: absolute;
+    inset: calc(100% - 3px) 0 0 0;
+    background: #fff;
+    scale: 0 1;
+    transition: .3s, translate 0s .3s;
+}
+
+.Navbar_nav ul:hover li:before {
+    scale: 1;
+}
+
+.Navbar_nav ul li:hover:before {
+    translate: 0;
+    transition: .3s;
+}
+
+.Navbar_nav ul:hover li:has(~ li:hover):before {
+    translate: 100% 0;
+    transition: .2s .2s, scale 0s .4s;
+}
+
+.Navbar_nav ul:hover li:hover~li:before {
+    translate: -100% 0;
+    transition: .2s .2s, scale 0s .4s;
+}
+
+/* - - - - - Jumbotron - - - - - */
+
+.jumbotron {
+    padding: 31px 50px;
+    background-image: url("/assets/Jumbotron.jpg");
+    height: 816px;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+}
+
+h1 {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 56px;
+    font-weight: bold;
+    color: #030C26;
+    transition: color 0.5s ease-in-out;
+}
+
+.icon_next {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.icon_next img {
+    width: 30px;
+    height: 30px;
+    transition: opacity 0.3s ease;
+}
+
+.icon_next img:hover {
+    opacity: 0.7;
+}
+
+/* - - - - - Main Body - - - - - */
+
+.Section-map,
+.Section_places,
+.Section-Package {
+    margin: 50px;
+}
+
+.Section-map {
+    display: flex;
+    text-align: center;
+}
+
+.map_text {
+    gap: 15px;
+    padding-left: 25px;
+}
+
+.map_text li {
+    list-style-type: decimal;
+}
+
+.Section-map image {
+    width: 786px;
+    height: 524px;
+}
+
+h2 {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding-bottom: 20px;
+}
+
+.Section_places {
+    display: flex;
+    text-align: center;
+}
+
+.places_text {
+    padding-right: 25px;
+}
+
+.Section_places image {
+    width: 600px;
+    height: 850px;
+}
+
+/* - - - - - Packages - - - - - */
+
+.Section-Package {
+    display: flex;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%; 
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding-bottom: 50px;
+}
+
+.Package {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.Package_info {
+    text-align: center;
+    background-image: url("assets/Package3.jpg");
+    background-size: cover;
+    padding: 41px 51px;
+    gap: 8px;
+}
+
+.Package_bar {
+    display: flex;
+    background-color: #27418C;
+    width: 100%;
+    gap: 5px;
+}
+
+.Package_bar button {
+    background-color: #04BF68;
+    color: white;
+    font-family: Kdam Thmor Pro;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    color: #030C26;
+    transform: scale(1.1);
+}
+
+/* - - - - - Footer - - - - - */
+
+footer {
+    margin-top: auto;
+    padding: 20px;
+    background-color: #1E1E1E;
+    color: white;
+}
+
+.section_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 145px;
+    gap: 100px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.footer_decor,
+.footer_icons {
+    padding-right: 25px;
+    display: flex;
+}
+
+.footer_menu {
+    padding-right: 250px;
+}
+
+.footer_info {
+    display: flex;
+}
