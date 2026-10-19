@@ -1,52 +1,128 @@
-// Array to hold the background images and corresponding text colors
+//Hero slides
 const images = [
-    { 
-        backgroundImage: 'url("/assets/Jumbotron.jpg")',
-        textColor: '#030C26',  // Initial color of the text
-        description: 'Indulge in the epitome of winter luxury with ALPINES. Experience the magic of snow-kissed landscapes...'
+    {
+        image: "assets/IcelandLs2.jpg",
+        country: "ICELAND",
+        subtitle: "Where Ice Meets the Wild.",
+        titleColor: "#030C26",
+        subtitleColor: "#385B6B",
+
+        description:
+            "Cross black-sand coasts, glacier valleys, and quiet roads shaped by fire and frost. Iceland turns every mile into a landscape worth stopping for."
     },
-    { 
-        backgroundImage: 'url("/assets/jumbotron2.jpg")', 
-        textColor: '#00A9D1',  // Color change for the text
-        description: 'Embark on a thrilling adventure with exclusive winter packages in Iceland...'
+
+    {
+        image: "assets/NorwayLs3.jpg",
+        country: "NORWAY",
+        subtitle: "Follow the Fjords North.",
+        titleColor: "#071426",
+        subtitleColor: "#486E80",
+
+        description:
+            "Travel between snow-covered peaks, fishing villages, and deep blue fjords where winter feels untouched and impossibly still."
+    },
+
+    {
+        image: "assets/SwissAlps4.jpg",
+        country: "SWITZERLAND",
+        subtitle: "Climb Into the Clouds.",
+        titleColor: "#071426",
+        subtitleColor: "#496C80",
+
+        description:
+            "Journey through alpine villages and towering snow-covered peaks, where crisp mountain air and warm chalets await."
+    },
+
+    {
+        image: "assets/MountFuji3.jpg",
+        country: "JAPAN",
+        subtitle: "Winter Beneath Fuji.",
+        titleColor: "#09172A",
+        subtitleColor: "#915F4B",
+
+        description:
+            "Discover Japan beneath its most iconic peak, where clear winter skies, quiet lakes, and snow-covered towns frame the journey."
+    },
+
+    {
+        image: "assets/Finland.jpg",
+        country: "FINLAND",
+        subtitle: "Find Silence in the North.",
+        titleColor: "#071426",
+        subtitleColor: "#51758A",
+
+        description:
+            "Wander through snow-covered forests and open Arctic landscapes, where Finland's winter feels peaceful, remote, and endless."
     }
 ];
 
-// Initialize current index
+// Preload hero images
+images.forEach(slide => {
+    const img = new Image();
+    img.src = slide.image;
+});
+
+
+// Current slide
 let currentIndex = 0;
 
-// Select DOM elements
-const jumbotron = document.querySelector('.jumbotron');
-const heading = document.querySelector('#jumbotron-text');
-const description = document.querySelector('#jumbotron-desc');
-const forwardIcon = document.querySelector('#forward');
-const backIcon = document.querySelector('#back');
 
-// Function to change the content (image and text)
+// Elements
+const jumbotron = document.querySelector(".jumbotron");
+const heading = document.querySelector("#jumbotron-text");
+const description = document.querySelector("#jumbotron-desc");
+const forwardIcon = document.querySelector("#forward");
+const backIcon = document.querySelector("#back");
+const subtitle = document.querySelector("#jumbotron-subtitle");
+
+// Change hero content
 function changeContent(direction) {
-    // Update index based on direction
+
     currentIndex += direction;
 
-    // Loop back to the first image if moving forward past the last
+    // Go back to first slide
     if (currentIndex >= images.length) {
         currentIndex = 0;
     }
-    // Loop back to the last image if moving back past the first
+
+    // Go to final slide
     if (currentIndex < 0) {
         currentIndex = images.length - 1;
     }
 
-    // Update the background image and text color
-    jumbotron.style.backgroundImage = images[currentIndex].backgroundImage;
-    heading.style.color = images[currentIndex].textColor;
-    description.textContent = images[currentIndex].description;
+    const currentSlide = images[currentIndex];
+
+    // Change background
+    jumbotron.style.backgroundImage =
+        `url("${currentSlide.image}")`;
+
+    // Change country name
+    heading.textContent = currentSlide.country;
+
+    // Change country color
+    heading.style.color = currentSlide.titleColor;
+
+    // Change subtitle
+    subtitle.textContent = currentSlide.subtitle;
+
+    // Change subtitle color
+    subtitle.style.color = currentSlide.subtitleColor;
+
+    // Change description
+    description.textContent = currentSlide.description;
 }
 
-// Event listeners for the icons
-forwardIcon.addEventListener('click', () => {
-    changeContent(1); // Move forward
+// Next slide
+forwardIcon.addEventListener("click", () => {
+    changeContent(1);
 });
 
-backIcon.addEventListener('click', () => {
-    changeContent(-1); // Move back
+
+// Previous slide
+backIcon.addEventListener("click", () => {
+    changeContent(-1);
 });
+
+
+// Load Iceland immediately
+changeContent(0);
