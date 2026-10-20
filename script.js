@@ -126,3 +126,70 @@ backIcon.addEventListener("click", () => {
 
 // Load Iceland immediately
 changeContent(0);
+
+// World Map
+const worldMap = document.querySelector("#world-map");
+
+worldMap.addEventListener("load", () => {
+
+    const svgDocument = worldMap.contentDocument;
+
+    const destinations = [
+        "Norway",
+        "Iceland",
+        "Finland",
+        "Switzerland",
+        "Japan"
+    ];
+
+    destinations.forEach(country => {
+
+        const countryParts =
+            svgDocument.querySelectorAll(`[name="${country}"], .${country}`);
+
+        console.log(country, countryParts.length);
+
+        countryParts.forEach(part => {
+
+            part.style.fill = "#C64646";
+            part.style.cursor = "pointer";
+           
+            part.addEventListener("mouseenter", () => {
+            part.style.fill = "#E86A6A";
+            });
+ 
+            part.addEventListener("mouseleave", () => {
+            part.style.fill = "#C64646";
+            });
+
+            part.addEventListener("click", () => {
+                alert(`${country} selected!`);
+            });
+
+        });
+
+    });
+
+});
+
+//Buttons for map
+const destinationLinks = document.querySelectorAll(".destination-link");
+
+destinationLinks.forEach((link) => {
+
+    link.addEventListener("click", () => {
+
+        const country = link.dataset.country;
+
+        selectDestination(country);
+
+    });
+
+});
+
+
+function selectDestination(country) {
+
+    console.log("Selected country:", country);
+
+}

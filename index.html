@@ -21,9 +21,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kdam+Thmor+Pro&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>
@@ -40,7 +37,7 @@
                 <li><a href="#about">About</a></li>
             </ul>
 
-            <a href="#packages" class="program-button">View Programs</a>
+            <a href="#packages" class="login-button">Log In</a>
 
         </nav>
     </header>
@@ -50,26 +47,21 @@
         <div class="container">
 
             <!-- Hero -->
-<section class="jumbotron" id="home">
+     <section class="jumbotron" id="home">
+        <div class="hero-content">
+        <h1 id="jumbotron-text">ICELAND</h1>
 
-    <div class="hero-content">
-
-          <h1 id="jumbotron-text">ICELAND</h1>
-
-          <h2 id="jumbotron-subtitle">
-            Where Ice Meets the Wild.
-           </h2>
-
-            <p id="jumbotron-desc">
-            Cross black-sand coasts, glacier valleys, and quiet roads shaped by fire and frost.
-             </p>
-
-            </div>
+        <h2 id="jumbotron-subtitle">
+         Where Ice Meets the Wild.
+        </h2>
+        <p id="jumbotron-desc">
+        Cross black-sand coasts, glacier valleys, and quiet roads shaped by fire and frost.
+         </p>
+        </div>
 
 
-             <div class="icon_next">
-
-            <img
+        <div class="icon_next">
+        <img
             src="assets/Next page.png"
             id="back"
             alt="Previous slide">
@@ -79,159 +71,94 @@
             id="forward"
             alt="Next slide">
 
-             </div>
+            </div>
+    </section>
 
-        </section>
+<!-- Map / Destinations -->
+<section class="Section-map" id="destinations">
 
-            <!-- Map / Destinations -->
-            <section class="Section-map" id="destinations">
+    <div class="map_image">
 
-                <div class="map_image">
+        <object
+            id="world-map"
+            class="world-map"
+            data="assets/world.svg"
+            type="image/svg+xml"
+            aria-label="World map showing Alpines winter destinations">
+        </object>
 
-                    <img
-                        src="assets/Map.jpg"
-                        alt="Map of winter destinations in Iceland">
-
-                </div>
-
-                <div class="map_text">
-
-                    <h2>Discover Iceland</h2>
-
-                    <p class="white-text">
-                        Navigate through stunning locations, from the shimmering
-                        ice caves of Vatnajökull National Park to the mesmerizing
-                        Northern Lights illuminating the night sky.
-
-                        Each click unveils hidden gems like the enchanting Blue
-                        Lagoon, where you can soak in geothermal waters surrounded
-                        by snow-covered hills.
-
-                        With detailed markers highlighting popular attractions,
-                        cozy accommodations, and exhilarating activities such as
-                        snowmobiling and glacier hiking, our map ensures you won't
-                        miss a moment of Iceland's winter magic.
-
-                        Let your adventure begin!
-                    </p>
-
-                    <p class="white-text">
-                        Alpines offers a variety of places you can tour this winter,
-                        such as:
-                    </p>
-
-                    <ul>
-                        <li>Höfn</li>
-                        <li>Bláfjöll</li>
-                        <li>Egilsstaðir</li>
-                        <li>Akureyri</li>
-                    </ul>
-
-                </div>
-
-            </section>
+    </div>
 
 
-            <!-- Destination Information -->
-            <section class="Section_places">
+    <div class="map_text">
 
-                <div class="places_text">
+        <p class="map-eyebrow">EXPLORE THE NORTH</p>
 
-                    <div>
+        <h2>CHOOSE YOUR WINTER</h2>
 
-                        <h2>Höfn</h2>
+        <p class="map-description">
+            Who said you need to stay at home during winter?
+            Five winter escapes, one map.
+            Select a destination and discover where the season takes you.
+        </p>
 
-                        <p class="white-text">
-                            Nestled along the southeastern coast, Höfn is a gateway
-                            to breathtaking natural wonders. This charming town is
-                            not only famous for its delicious seafood but also
-                            offers stunning views of the Vatnajökull glacier.
-
-                            Visitors can embark on glacier tours or explore nearby
-                            Jökulsárlón, a mesmerizing glacial lagoon filled with
-                            floating icebergs. The surrounding landscapes provide
-                            endless opportunities for photography, hiking, and
-                            discovering the rugged beauty of Iceland's coast.
-                        </p>
-
-                    </div>
+        <p class="destination-title">
+            Where will winter take you?
+        </p>
 
 
-                    <div>
+        <ul class="destination-list">
 
-                        <h2>Bláfjöll</h2>
+            <li>
+                <button
+                    type="button"
+                    class="destination-link"
+                    data-country="finland">
+                    Finland
+                </button>
+            </li>
 
-                        <p class="white-text">
-                            Just a short drive from Reykjavik, Bláfjöll is a winter
-                            sports paradise. This popular ski resort offers a variety
-                            of slopes suitable for all skill levels, making it an
-                            ideal destination for both beginners and experienced
-                            skiers.
+            <li>
+                <button
+                    type="button"
+                    class="destination-link"
+                    data-country="iceland">
+                    Iceland
+                </button>
+            </li>
 
-                            Beyond skiing, visitors can enjoy snowboarding,
-                            snowshoeing, and sledding in the picturesque
-                            surroundings. The stunning views of the surrounding
-                            mountains and valleys are a treat for nature lovers.
-                        </p>
+            <li>
+                <button
+                    type="button"
+                    class="destination-link"
+                    data-country="japan">
+                    Japan
+                </button>
+            </li>
 
-                    </div>
+            <li>
+                <button
+                    type="button"
+                    class="destination-link"
+                    data-country="norway">
+                    Norway
+                </button>
+            </li>
 
+            <li>
+                <button
+                    type="button"
+                    class="destination-link"
+                    data-country="switzerland">
+                    Switzerland
+                </button>
+            </li>
 
-                    <div>
+        </ul>
 
-                        <h2>Egilsstaðir</h2>
+    </div>
 
-                        <p class="white-text">
-                            Egilsstaðir, the largest town in East Iceland, serves
-                            as a hub for exploring the breathtaking landscapes of
-                            the region.
-
-                            In winter, the town becomes a charming base for
-                            discovering nearby attractions such as the stunning
-                            waterfalls of Hengifoss and the serene beauty of Lake
-                            Lagarfljót.
-
-                            The surrounding East Fjords offer incredible hiking
-                            opportunities and the chance to spot reindeer in their
-                            natural habitat. The area is also known for its unique
-                            geothermal hot springs, providing a perfect way to
-                            relax after a day of adventure.
-                        </p>
-
-                    </div>
-
-
-                    <div>
-
-                        <h2>Akureyri</h2>
-
-                        <p class="white-text">
-                            Akureyri is a vibrant city that offers a perfect blend
-                            of urban charm and natural beauty.
-
-                            In winter, the city becomes a snowy wonderland, with
-                            plenty of outdoor activities such as skiing at the
-                            nearby Hlíðarfjall ski resort and exploring the
-                            stunning landscapes surrounding Lake Mývatn.
-
-                            The city itself boasts cozy cafes and fascinating
-                            museums, including the Akureyri Art Museum.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="places_image">
-
-                    <img
-                        src="assets/landscape2.jpg"
-                        alt="Snowy Icelandic landscape">
-
-                </div>
-
-            </section>
-
+</section>
 
             <!-- Packages -->
             <section class="Section-Package" id="packages">
@@ -384,13 +311,9 @@
 
 
     <footer id="about">
-
         <section class="section_footer">
-
             <div class="footer_decor">
-
                 <p class="white-text">Connect with us</p>
-
                 <img
                     src="assets/arrow.svg"
                     alt="Arrow">
@@ -416,7 +339,6 @@
 
 
             <div class="footer_menu">
-
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#destinations">Explore</a></li>
@@ -427,18 +349,14 @@
 
 
             <div class="footer_info">
-
                 <div>
                     <p class="white-text">Office</p>
                     <p class="white-text">
                         Headquarters: Vatnajökull Glacier, Iceland
                     </p>
                 </div>
-
             </div>
-
         </section>
-
     </footer>
 
 
