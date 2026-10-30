@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
 
 /* =========================================================
    GENERAL
@@ -94,7 +93,7 @@ h2 {
 
     line-height: 1;
 
-    color: #FFFFFF;
+    color: #ffffff;
 
     padding-bottom: 20px;
 }
@@ -180,7 +179,7 @@ header {
     position: relative;
     z-index: 20;
 
-    background: rgba(7, 20, 38, 0.96);
+    background: #030C26;
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -317,7 +316,7 @@ header nav ul li:hover::after {
 #jumbotron-text {
     max-width: 100%;
 
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 
@@ -347,8 +346,8 @@ header nav ul li:hover::after {
 
     color: #18232D;
 
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 600;
 
     line-height: 1.65;
 }
@@ -434,16 +433,26 @@ header nav ul li:hover::after {
 
     width: 100%;
 
-    /* No left padding — map begins against the left side */
     margin: 0;
+    position: relative;
 
-    padding:
-        80px
-        70px
-        80px
-        0;
-
+    padding: 35px 70px 80px 0;
     gap: 55px;
+}
+
+.Section-map::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 10px;
+
+    background-color: #C64646;
+
+    z-index: 3;
 }
 
 
@@ -496,7 +505,7 @@ header nav ul li:hover::after {
 
     font-family: 'Manrope', sans-serif;
 
-    font-size: 12px;
+    font-size: 17px;
     font-weight: 700;
 
     letter-spacing: 0.18em;
@@ -516,11 +525,11 @@ header nav ul li:hover::after {
 
     font-family: 'Archivo Black', sans-serif;
 
-    font-size: clamp(34px, 3.2vw, 54px);
+    font-size: clamp(42px, 4vw, 64px);
     font-weight: 400;
 
     line-height: 0.95;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.04em;
 }
 
 
@@ -535,8 +544,8 @@ header nav ul li:hover::after {
 
     font-family: 'Manrope', sans-serif;
 
-    font-size: 15px;
-    font-weight: 400;
+    font-size: 17px;
+    font-weight: 500;
 
     line-height: 1.7;
 }
@@ -551,8 +560,8 @@ header nav ul li:hover::after {
 
     font-family: 'Manrope', sans-serif;
 
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 
@@ -585,25 +594,24 @@ header nav ul li:hover::after {
 
 .destination-link {
     position: relative;
+    padding: 0;
 
-    padding: 3px 0;
-
-    background: transparent;
-
+    background: none;
     color: #FFFFFF;
 
     border: none;
 
     font-family: 'Manrope', sans-serif;
 
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
 
     cursor: pointer;
 
     transition:
         color 0.25s ease,
-        transform 0.25s ease;
+        transform 0.25s ease,
+        opacity 0.2s ease;
 }
 
 
@@ -628,13 +636,20 @@ header nav ul li:hover::after {
 
 .destination-link:hover {
     color: #FFFFFF;
-
-    transform: translateX(5px);
+    transform: translateX(4px);
+    opacity: 0.75;
 }
 
 
 .destination-link:hover::after {
     width: 100%;
+}
+
+.destination-link.active {
+    text-decoration: underline;
+    text-decoration-color: #C64646;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
 }
 
 /* =========================================================
@@ -797,43 +812,43 @@ footer {
     }
 
     .Section-map {
-    grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
 
-    gap: 40px;
+        gap: 40px;
 
-    padding: 60px 30px;
+        padding: 60px 30px;
     }
 
 
     .world-map {
-    height: 500px;
+        height: 500px;
     }
 
 
     .map_text {
-    max-width: 600px;
+        max-width: 600px;
 
-    margin: 0 auto;
+        margin: 0 auto;
 
-    text-align: center;
+        text-align: center;
     }
 
 
     .map-description {
-    max-width: 520px;
+        max-width: 520px;
 
-    margin-left: auto;
-    margin-right: auto;
+        margin-left: auto;
+        margin-right: auto;
 
-    margin-bottom: 30px;
+        margin-bottom: 30px;
     }
 
 
     .destination-list {
-    align-items: center;
+        align-items: center;
     }
 
-.Section-Package {
+    .Section-Package {
         grid-template-columns: 1fr;
     }
 
@@ -909,21 +924,463 @@ footer {
     }
 
     .Section-map {
-    padding: 45px 20px;
+        padding: 45px 20px;
+    }
+
+    .world-map {
+        height: 350px;
+    }
+
+    .map-description {
+        font-size: 14px;
+    }
+}
+
+/* =========================================================
+   TICKET
+   ========================================================= */
+
+.destination-pass-section {
+    width: 100%;
+    padding: 20px 70px 140px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 
-    .world-map {
-    height: 350px;
+/* Main ticket shape */
+.destination-ticket {
+    position: relative;
+
+    width: min(1100px, 92%);
+    height: 300px;
+
+    display: grid;
+    grid-template-columns: 135px 1fr;
+
+    background-color: #dee2e5;
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Side cutouts */
+.destination-ticket::before,
+.destination-ticket::after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+
+    width: 30px;
+    height: 30px;
+
+    background-color: #030C26;
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 5;
+}
+
+.destination-ticket::before {
+    left: -15px;
+}
+
+.destination-ticket::after {
+    right: -15px;
+}
+
+.ticket-stub {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-right: 2px dashed rgba(3, 12, 38, 0.75);
+}
+
+
+/* Top + bottom cutouts at perforation */
+.ticket-stub::before,
+.ticket-stub::after {
+    content: "";
+
+    position: absolute;
+    right: -16px;
+
+    width: 30px;
+    height: 30px;
+
+    background-color: #030C26;
+    border-radius: 50%;
+
+    z-index: 5;
+}
+
+.ticket-stub::before {
+    top: -15px;
+}
+
+.ticket-stub::after {
+    bottom: -15px;
+}
+
+
+/* Rotated NO. 02 */
+.ticket-number-wrap {
+    display: flex;
+    align-items: baseline;
+
+    gap: 10px;
+
+    transform: rotate(-90deg);
+
+    white-space: nowrap;
+
+    color: #030C26;
+}
+
+.ticket-number-wrap span {
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+}
+
+#ticket-number {
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-size: 54px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    color: #030C26;
+}
+
+
+/* =========================================================
+   MAIN TICKET CONTENT
+   ========================================================= */
+
+.ticket-main {
+    position: relative;
+
+    height: 100%;
+
+    padding: 24px 34px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.ticket-top {
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+    padding-right: 240px;
+}
+
+.ticket-destination-block {
+    min-width: 0;
+    flex-shrink: 0;
+}
+
+/* BOARDING PASS */
+.ticket-pass-title {
+    margin: 0 0 14px;
+
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+
+    color: #030C26;
+}
+
+
+/* Destination / Coordinates / Season / Expect */
+.ticket-label {
+    margin: 11px 0 3px;
+
+    font-family: 'Manrope', sans-serif;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    color: #6B7480;
+}
+
+
+/* COUNTRY NAME */
+#ticket-country {
+    margin: 0 0 8px;
+    padding: 0;
+
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-size: 60px;
+    font-weight: 800;
+
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+
+    /* Overrides the global white h2 */
+    color: #030C26;
+}
+
+
+/* Ticket values */
+#ticket-coordinates,
+#ticket-season,
+#ticket-expect {
+    margin: 0;
+
+    font-family: 'Manrope', sans-serif;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    line-height: 1.35;
+
+    color: #18232D;
+}
+
+
+/* Make EXPECT slightly stronger */
+#ticket-expect {
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ROUTE + BARCODE
+   ========================================================= */
+
+.ticket-route {
+    flex: 1;
+    min-width: 0;
+    max-width: 320px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding-bottom: 14px;
+    color: #030C26;
+}
+
+.route-code {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.route-line {
+    flex: 1;
+    border-top: 2px dashed rgba(3, 12, 38, 0.35);
+}
+
+.route-plane {
+    font-size: 18px;
+}
+
+.ticket-barcode {
+    position: absolute;
+    right: 40px;
+    bottom: 24px;
+
+    width: 150px;
+    height: 46px;
+
+    background: repeating-linear-gradient(
+        90deg,
+        #030C26 0 2px,
+        transparent 2px 5px,
+        #030C26 5px 6px,
+        transparent 6px 10px
+    );
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   FLAG STAMP
+   ========================================================= */
+
+.ticket-flag-stamp {
+    position: absolute;
+
+    top: 35%;
+    right: 70px;
+
+    width: 165px;
+    height: 118px;
+
+    transform: translateY(-50%) rotate(5deg);
+
+    z-index: 3;
+}
+
+
+/* Black perforated stamp SVG */
+.stamp-frame {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: fill;
+
+    z-index: 1;
+}
+
+
+/* Country flag inside stamp */
+#ticket-flag {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 126px;
+    height: 85px;
+
+    transform: translate(-50%, -50%);
+
+    object-fit: cover;
+
+    z-index: 2;
+}
+
+
+/* Coordinates / Season / Expect row */
+.ticket-details {
+    position: absolute;
+
+    left: 34px;
+    right: 245px;
+    bottom: 24px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.45fr
+        0.8fr
+        1fr;
+
+    gap: 30px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid rgba(3, 12, 38, 0.15);
+}
+
+.ticket-detail {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE TICKET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .destination-pass-section {
+        padding: 40px 30px 100px;
     }
 
-
-    .map_text h2 {
-    font-size: 34px;
+    .destination-ticket {
+        width: 100%;
     }
 
+    .ticket-main {
+        padding-right: 215px;
+    }
 
-    .map-description {
-    font-size: 14px;
+    .ticket-flag-stamp {
+        width: 185px;
+        height: 135px;
+    }
+
+    #ticket-flag {
+        width: 132px;
+        height: 90px;
+    }
+
+    .ticket-route,
+    .ticket-barcode {
+        display: none;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .destination-pass-section {
+        padding: 35px 20px 60px;
+    }
+
+    .destination-ticket {
+        height: auto;
+        min-height: 430px;
+
+        grid-template-columns: 85px 1fr;
+    }
+
+    .ticket-main {
+        padding: 30px 25px;
+        padding-bottom: 175px;
+    }
+
+    .ticket-number-wrap span {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    #ticket-number {
+        font-size: 28px;
+    }
+
+    .ticket-pass-title {
+        font-size: 22px;
+    }
+
+    #ticket-country {
+        font-size: 44px;
+    }
+
+    .ticket-flag-stamp {
+        top: auto;
+        right: 25px;
+        bottom: 25px;
+
+        width: 165px;
+        height: 120px;
+
+        transform: rotate(5deg);
+    }
+
+    #ticket-flag {
+        width: 118px;
+        height: 80px;
     }
 }

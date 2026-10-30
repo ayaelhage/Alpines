@@ -128,68 +128,244 @@ backIcon.addEventListener("click", () => {
 changeContent(0);
 
 // World Map
+
 const worldMap = document.querySelector("#world-map");
+const destinationLinks = document.querySelectorAll(".destination-link");
+
+const destinations = [
+    "Finland",
+    "Iceland",
+    "Japan",
+    "Norway",
+    "Switzerland"
+];
+
+let selectedCountry = "Iceland";
+let svgDocument;
+
+
+// Select a country
+function selectCountry(country) {
+
+    selectedCountry = country;
+    updateTicket(country);
+    console.log("Selected:", selectedCountry);
+
+    // Update map colours
+
+    destinations.forEach(destination => {
+
+        const countryParts =
+            svgDocument.querySelectorAll(
+                `[name="${destination}"], .${destination}`
+            );
+
+
+        countryParts.forEach(part => {
+
+            if (destination === selectedCountry) {
+
+                // Selected country stays red
+                part.style.fill = "#C64646";
+
+            } else {
+
+                // Other countries return to original colour
+                part.style.fill = part.dataset.originalFill;
+
+            }
+
+        });
+
+    });
+
+    // Update country list
+
+    destinationLinks.forEach(link => {
+
+        const buttonCountry = link.dataset.country;
+
+        if (buttonCountry === selectedCountry) {
+
+            link.classList.add("active");
+
+        } else {
+
+            link.classList.remove("active");
+
+        }
+
+    });
+
+}
+
+// LOAD SVG MAP
 
 worldMap.addEventListener("load", () => {
 
-    const svgDocument = worldMap.contentDocument;
+    svgDocument = worldMap.contentDocument;
 
-    const destinations = [
-        "Norway",
-        "Iceland",
-        "Finland",
-        "Switzerland",
-        "Japan"
-    ];
+    //Pins
+    const pinOffsets = {
+    Finland: { x: 3, y: 6},
+    Iceland: { x: 0, y: 2 },
+    Japan: { x: 3, y: 0 },
+    Norway: { x: -40, y: 10 },
+    Switzerland: { x: 0, y: 0 }
+    };
+
+    function addCountryPin(country) {
+
+    const countryParts =
+        svgDocument.querySelectorAll(
+            `[name="${country}"], .${country}`
+        );
+
+    if (countryParts.length === 0) {
+        return;
+    }
+
+    let mainPart = countryParts[0];
+    let largestArea = 0;
+
+    countryParts.forEach(part => {
+
+        const box = part.getBBox();
+        const area = box.width * box.height;
+
+        if (area > largestArea) {
+            largestArea = area;
+            mainPart = part;
+        }
+
+    });
+
+
+    const box = mainPart.getBBox();
+
+    const centerX = box.x + box.width / 2;
+    const centerY = box.y + box.height / 2;
+
+    const offset = pinOffsets[country] || { x: 0, y: 0 };
+
+    const pin = svgDocument.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "image"
+    );
+
+    const pinSize = 28;
+
+    pin.setAttribute("width", pinSize);
+    pin.setAttribute("height", pinSize);
+
+    // Bottom point of pin lands around country centre
+    pin.setAttribute(
+    "x",
+    centerX - pinSize / 2 + offset.x
+   );
+
+   pin.setAttribute(
+    "y",
+    centerY - pinSize + offset.y
+    );
+
+
+    // pin.svg is inside assets with world.svg
+    const pinUrl =
+        new URL("assets/pin.svg", document.baseURI).href;
+
+    pin.setAttribute("href", pinUrl);
+
+    pin.classList.add("map-pin");
+
+    pin.style.cursor = "pointer";
+
+
+    // Pin also selects the country
+    pin.addEventListener("click", () => {
+        selectCountry(country);
+    });
+
+
+    svgDocument.documentElement.appendChild(pin);
+}
 
     destinations.forEach(country => {
 
         const countryParts =
-            svgDocument.querySelectorAll(`[name="${country}"], .${country}`);
+            svgDocument.querySelectorAll(
+                `[name="${country}"], .${country}`
+            );
 
-        console.log(country, countryParts.length);
 
         countryParts.forEach(part => {
 
-            part.style.fill = "#C64646";
-            part.style.cursor = "pointer";
-           
-            part.addEventListener("mouseenter", () => {
-            part.style.fill = "#E86A6A";
-            });
- 
-            part.addEventListener("mouseleave", () => {
-            part.style.fill = "#C64646";
-            });
+            // Remember original map colour
+            part.dataset.originalFill =
+                getComputedStyle(part).fill;
 
+
+            // Show that this country is clickable
+            part.style.cursor = "pointer";
+
+
+            // Select country when map is clicked
             part.addEventListener("click", () => {
-                alert(`${country} selected!`);
+
+                selectCountry(country);
+
             });
 
         });
 
     });
 
+    destinations.forEach(country => {
+    addCountryPin(country);
 });
 
-//Buttons for map
-const destinationLinks = document.querySelectorAll(".destination-link");
+    selectCountry("Iceland");
 
-destinationLinks.forEach((link) => {
+});
+
+// country list buttons
+
+destinationLinks.forEach(link => {
 
     link.addEventListener("click", () => {
 
         const country = link.dataset.country;
 
-        selectDestination(country);
+        selectCountry(country);
 
     });
 
 });
 
+// Destination Data
+const destinationData = {
+Finland:     { number: "01", destination: "FINLAND",     code: "HEL", coordinates: "61.9241° N, 25.7482° E", season: "December", expect: "Northern Lights" },
+Iceland:     { number: "02", destination: "ICELAND",     code: "KEF", coordinates: "64.9631° N, 19.0208° W", season: "November", expect: "Glaciers & Aurora" },
+Japan:       { number: "03", destination: "JAPAN",       code: "HND", coordinates: "36.2048° N, 138.2529° E", season: "January", expect: "Snow Towns & Onsen" },
+Norway:      { number: "04", destination: "NORWAY",      code: "OSL", coordinates: "60.4720° N, 8.4689° E", season: "December", expect: "Fjords & Aurora" },
+Switzerland: { number: "05", destination: "SWITZERLAND", code: "ZRH", coordinates: "46.8182° N, 8.2275° E", season: "February", expect: "Alpine Skiing" }
+};
 
-function selectDestination(country) {
+function updateTicket(country) {
+  const data = destinationData[country];
 
-    console.log("Selected country:", country);
+  if (!data) {
+    console.error(`No ticket found for country: ${country}`);
+    return;
+  }
 
+  document.querySelector("#ticket-number").textContent = data.number;
+  document.querySelector("#ticket-country").textContent = data.destination;
+  document.querySelector("#ticket-coordinates").textContent = data.coordinates;
+  document.querySelector("#ticket-season").textContent = data.season;
+  document.querySelector("#ticket-expect").textContent = data.expect;
+  document.querySelector("#ticket-flag").src =
+    `assets/${country.toLowerCase()}-flag.svg`;
+  document.querySelector("#ticket-flag").alt = `${country} flag`;
+  document.querySelector("#ticket-code").textContent = data.code;
 }
