@@ -177,6 +177,11 @@ function selectCountry(country) {
 
         });
 
+        const ticket = document.querySelector(".destination-ticket");
+        ticket.classList.remove("ticket-swap");
+        void ticket.offsetWidth; // restarts the animation
+        ticket.classList.add("ticket-swap");
+
     });
 
     // Update country list
@@ -211,7 +216,7 @@ worldMap.addEventListener("load", () => {
     Iceland: { x: 0, y: 2 },
     Japan: { x: 3, y: 0 },
     Norway: { x: -40, y: 10 },
-    Switzerland: { x: 0, y: 0 }
+    Switzerland: { x: 0, y: -2 }
     };
 
     function addCountryPin(country) {
