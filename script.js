@@ -374,3 +374,303 @@ function updateTicket(country) {
   document.querySelector("#ticket-flag").alt = `${country} flag`;
   document.querySelector("#ticket-code").textContent = data.code;
 }
+
+// =========================================================
+// PACKAGES CAROUSEL
+// =========================================================
+
+const packages = [
+    {
+        id: 1,
+        number: "01",
+        country: "Finland",
+        title: "Lapland Aurora Cabin",
+        location: "Rovaniemi, Lapland",
+        nights: 3,
+        price: 450,
+        food: true,
+        tags: ["aurora", "cabins"],
+        image: "assets/aurora.jpg",
+        blurb: "A glass-roof cabin, husky safari and three nights under the northern lights."
+    },
+    {
+        id: 2,
+        number: "02",
+        country: "Iceland",
+        title: "Höfn Glacier Escape",
+        location: "Höfn, South Iceland",
+        nights: 3,
+        price: 300,
+        food: true,
+        tags: ["glaciers", "aurora"],
+        image: "assets/glacier.jpg",
+        blurb: "Icebergs at Jökulsárlón, a lobster dinner and a hotel facing Vatnajökull."
+    },
+    {
+        id: 3,
+        number: "03",
+        country: "Japan",
+        title: "Fuji Onsen Retreat",
+        location: "Lake Kawaguchi",
+        nights: 4,
+        price: 690,
+        food: true,
+        tags: ["hot-springs"],
+        image: "assets/snowytown.jpg",
+        blurb: "Soak in a private onsen with Mount Fuji in view and wander snowy lakeside towns."
+    },
+    {
+        id: 4,
+        number: "04",
+        country: "Norway",
+        title: "Lofoten Fjord Escape",
+        location: "Lofoten Islands",
+        nights: 4,
+        price: 520,
+        food: false,
+        tags: ["fjords", "cabins", "aurora"],
+        image: "assets/cabin.jpg",
+        blurb: "Red fishing cabins, fjord cruises and aurora nights above the Arctic Circle."
+    },
+    {
+        id: 5,
+        number: "05",
+        country: "Switzerland",
+        title: "Alpine Ski Week",
+        location: "Zermatt, Valais",
+        nights: 5,
+        price: 780,
+        food: false,
+        tags: ["skiing", "cabins"],
+        image: "assets/ski.jpg",
+        blurb: "Ski passes, a chalet below the Matterhorn and a lesson for every level."
+    }
+];
+
+
+const packageTrack = document.querySelector("#package-track");
+
+const total = packages.length;
+
+// Endless loop
+// jump is invisible.
+const COPIES = 3;
+
+let activePackage = total + 1; // middle copy, starting on Iceland
+
+
+// Build the cards
+function buildPackageCards() {
+
+    let html = "";
+
+    for (let copy = 0; copy < COPIES; copy++) {
+
+        const isMiddle = copy === 1;
+
+        packages.forEach((pkg, index) => {
+
+            const globalIndex = copy * total + index;
+
+            html += `
+        <article class="package-card" data-index="${globalIndex}"
+                 ${isMiddle
+                     ? `tabindex="0" aria-label="${pkg.title}, ${pkg.location}"`
+                     : `aria-hidden="true"`}>
+
+            <img class="package-photo" src="${pkg.image}" alt="" decoding="async">
+
+            <div class="package-top">
+                <span class="package-num">${pkg.number}</span>
+                <span class="package-price">From ${pkg.price}€</span>
+            </div>
+
+            <div class="package-info">
+
+                <p class="package-country">
+                    <img src="assets/${pkg.country.toLowerCase()}-flag.svg" alt="">
+                    ${pkg.country}
+                </p>
+
+                <h3 class="package-name">${pkg.title}</h3>
+                <p class="package-place">${pkg.location}</p>
+
+                <div class="package-meta">
+                    <span>${pkg.nights} nights</span>
+                    <span>${pkg.food ? "Food included" : "Food not included"}</span>
+                </div>
+
+                <p class="package-blurb">${pkg.blurb}</p>
+
+                <a class="package-link" href="packages.html?id=${pkg.id}"
+                   ${isMiddle ? "" : 'tabindex="-1"'}>
+                    View package <span aria-hidden="true">→</span>
+                </a>
+
+            </div>
+
+        </article>`;
+        });
+    }
+
+    packageTrack.innerHTML = html;
+}
+
+
+// Center the active card and style the rest
+function updateCarousel(animate = true) {
+
+    const cards = packageTrack.querySelectorAll(".package-card");
+    const card = cards[activePackage];
+
+    if (!animate) {
+        packageTrack.classList.add("no-anim");
+    }
+
+    // distance from the track's left edge to the card's centre
+    const cardCentre = card.offsetLeft + card.offsetWidth / 2;
+    const viewportCentre = packageTrack.parentElement.offsetWidth / 2;
+
+    packageTrack.style.transform =
+        `translateX(${viewportCentre - cardCentre}px)`;
+
+    cards.forEach((c, i) => {
+        c.classList.toggle("is-active", i === activePackage);
+    });
+
+    // light up the banner icons that belong to the active card
+    const lit = packages[activePackage % total].tags;
+
+    document.querySelectorAll(".package-cat").forEach(cat => {
+        cat.classList.toggle("is-lit", lit.includes(cat.dataset.category));
+    });
+
+    if (!animate) {
+        // force the browser to apply the change, then turn animation back on
+        void packageTrack.offsetWidth;
+        packageTrack.classList.remove("no-anim");
+    }
+}
+
+
+function goToPackage(index) {
+
+    activePackage = Math.max(0, Math.min(total * COPIES - 1, index));
+    updateCarousel();
+}
+
+
+// After a slide: if we are on an outer copy, jump back to the middle one
+packageTrack.addEventListener("transitionend", event => {
+
+    if (event.target !== packageTrack || event.propertyName !== "transform") {
+        return;
+    }
+
+    if (activePackage < total || activePackage >= total * 2) {
+        activePackage = (activePackage % total) + total;
+        updateCarousel(false);
+    }
+});
+
+
+buildPackageCards();
+updateCarousel(false);
+
+
+// Click a side card to bring it forward
+packageTrack.addEventListener("click", event => {
+
+    const card = event.target.closest(".package-card");
+
+    if (card && !card.classList.contains("is-active")) {
+        event.preventDefault();
+        goToPackage(Number(card.dataset.index));
+    }
+});
+
+
+// Keyboard: Enter on a side card, arrows anywhere in the carousel
+packageTrack.addEventListener("keydown", event => {
+
+    const card = event.target.closest(".package-card");
+
+    if (event.key === "Enter" && card && !card.classList.contains("is-active")) {
+        goToPackage(Number(card.dataset.index));
+    }
+
+    if (event.key === "ArrowRight") goToPackage(activePackage + 1);
+    if (event.key === "ArrowLeft") goToPackage(activePackage - 1);
+});
+
+
+// Swipe on touch screens
+let swipeStartX = null;
+
+packageTrack.addEventListener("pointerdown", event => {
+    swipeStartX = event.clientX;
+});
+
+packageTrack.addEventListener("pointerup", event => {
+
+    if (swipeStartX === null) return;
+
+    const distance = event.clientX - swipeStartX;
+    swipeStartX = null;
+
+    if (Math.abs(distance) > 50) {
+        goToPackage(activePackage + (distance < 0 ? 1 : -1));
+    }
+});
+
+
+// Keep the active card centred when the window changes size
+window.addEventListener("resize", () => updateCarousel(false));
+
+// Re-centre once the fonts and images have loaded
+window.addEventListener("load", () => updateCarousel(false));
+
+
+// =========================================================
+// NUMBERS STRIP: count up when it scrolls into view
+// =========================================================
+
+const statCounters = document.querySelectorAll("[data-count]");
+
+function countUp(element) {
+
+    const target = Number(element.dataset.count);
+    const duration = 1200;
+    const start = performance.now();
+
+    function step(now) {
+
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+
+        element.textContent = Math.round(target * eased);
+
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+if ("IntersectionObserver" in window &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                countUp(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+
+    }, { threshold: 0.6 });
+
+    statCounters.forEach(counter => statsObserver.observe(counter));
+}

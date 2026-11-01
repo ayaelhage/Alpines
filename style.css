@@ -1,7 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
 
 /* =========================================================
-   GENERAL
+   ALPINES — style.css
+
+   01. Base
+   02. Typography
+   03. Navbar + login button
+   04. Hero
+   05. Map + destinations
+   06. Boarding-pass ticket
+   07. Quote divider
+   08. Why Alpines
+   09. Packages
+   10. Footer
+
+   Fonts: Barlow Condensed = titles and ticket
+          Manrope = body text
+   Palette: navy #030C26, red #C64646, paper #ece5d8
+   Each section keeps its own responsive rules at its end.
+   ========================================================= */
+
+
+/* =========================================================
+   01. BASE
    ========================================================= */
 
 * {
@@ -15,13 +36,12 @@ html {
 }
 
 body {
-    background-color: #030C26;
-
     display: flex;
     flex-direction: column;
 
     min-height: 100vh;
 
+    background-color: #030C26;
     font-family: 'Manrope', sans-serif;
 }
 
@@ -53,7 +73,7 @@ p {
 }
 
 .white-text {
-    color: white;
+    color: #FFFFFF;
     padding-bottom: 25px;
 }
 
@@ -61,118 +81,56 @@ p {
     color: #000000;
 }
 
-ul li {
-    font-family: 'Manrope', sans-serif;
-}
-
 
 /* =========================================================
-   HEADINGS
+   02. TYPOGRAPHY
    ========================================================= */
 
 h1 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
 
-    font-size: clamp(64px, 8vw, 128px);
-    font-weight: 400;
+    font-size: clamp(80px, 11vw, 170px);
+    font-weight: 800;
 
-    line-height: 0.9;
-    letter-spacing: -0.04em;
+    line-height: 0.88;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
 
     color: #030C26;
 
     transition: color 0.4s ease-in-out;
 }
 
-
 h2 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
 
-    font-size: 30px;
-    font-weight: 400;
+    font-size: 38px;
+    font-weight: 800;
 
     line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
 
-    color: #ffffff;
+    color: #FFFFFF;
 
     padding-bottom: 20px;
 }
 
-
 h3 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
 
-    font-weight: 400;
+    font-size: 26px;
+    font-weight: 700;
 
-    margin-bottom: 20px;
-}
-
-/* =========================================================
-   MAIN CTA BUTTON
-   ========================================================= */
-
-.login-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 155px;
-    height: 42px;
-
-    padding: 0 20px;
-
-    background-color: #C64646;
-    color: #FFFFFF;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    border: 1px solid #C64646;
-    border-radius: 8px;
 
-    cursor: pointer;
-
-    justify-self: end;
-
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    margin-bottom: 16px;
 }
 
-.login-button:hover {
-    background-color: transparent;
-
-    color: #FFFFFF;
-
-    border-color: #FFFFFF;
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-}
-
-.login-button a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    height: 100%;
-
-    color: inherit;
-}
-
-.login-button:hover a {
-    color: inherit;
-}
 
 /* =========================================================
-   NAVBAR
+   03. NAVBAR + LOGIN BUTTON
    ========================================================= */
 
 header {
@@ -185,8 +143,9 @@ header {
     -webkit-backdrop-filter: blur(10px);
 }
 
-
 header nav {
+    position: relative;
+
     display: flex;
     align-items: center;
 
@@ -194,35 +153,29 @@ header nav {
     min-height: 72px;
 
     padding: 12px 40px;
-    position: relative;
 }
-
 
 /* Pine logo */
-
 header nav > img {
-    width: 34px;
-    height: auto;
-
     display: block;
     flex-shrink: 0;
+
+    width: 34px;
+    height: auto;
 }
 
-
-/* Navigation links */
-
+/* Links */
 header nav ul {
-    display: flex;
-    align-items: center;
-
-    gap: 55px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 
+    display: flex;
+    align-items: center;
+    gap: 55px;
+
     text-transform: uppercase;
 }
-
 
 header nav ul li {
     position: relative;
@@ -233,7 +186,6 @@ header nav ul li {
 
     font-size: 13px;
     font-weight: 600;
-
     letter-spacing: 0.08em;
 
     cursor: pointer;
@@ -241,19 +193,15 @@ header nav ul li {
     transition: color 0.25s ease;
 }
 
-
 header nav ul li:hover {
     color: #FFFFFF;
 }
 
-
-/* Red underline */
-
+/* Red underline on hover */
 header nav ul li::after {
     content: "";
 
     position: absolute;
-
     left: 50%;
     bottom: 0;
 
@@ -267,29 +215,99 @@ header nav ul li::after {
     transition: width 0.25s ease;
 }
 
-
 header nav ul li:hover::after {
     width: 100%;
 }
 
-
-/* View LogIn */
-
+/* Log in button */
 .login-button {
-    margin-left: auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 
+    width: 155px;
+    height: 42px;
+
+    margin-left: auto;
+    padding: 0 20px;
     flex-shrink: 0;
+
+    background-color: #C64646;
+    color: #FFFFFF;
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    border: 1px solid #C64646;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
+.login-button:hover {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1000px) {
+
+    header nav {
+        flex-wrap: wrap;
+        gap: 18px;
+        padding: 15px 25px;
+    }
+
+    header nav ul {
+        margin-left: auto;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .login-button {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    header nav > img {
+        width: 32px;
+    }
+
+    .Navbar_nav ul {
+        gap: 15px;
+        font-size: 13px;
+    }
+
+    .login-button {
+        width: 145px;
+        height: 40px;
+        font-size: 13px;
+    }
+}
+
+
 /* =========================================================
-   JUMBOTRON
+   04. HERO
    ========================================================= */
 
 .jumbotron {
     position: relative;
 
     width: 100%;
-
     height: calc(100vh - 72px);
 
     padding: 60px 75px;
@@ -304,24 +322,18 @@ header nav ul li:hover::after {
 
 .hero-content {
     position: relative;
-
     z-index: 2;
 
     max-width: 900px;
 }
 
-
-/* Country */
-
+/* Country name */
 #jumbotron-text {
     max-width: 100%;
-
     margin-bottom: 16px;
 }
 
-
 /* Tagline */
-
 #jumbotron-subtitle {
     font-family: 'Manrope', sans-serif;
 
@@ -329,6 +341,7 @@ header nav ul li:hover::after {
     font-weight: 600;
 
     letter-spacing: -0.02em;
+    text-transform: none;
 
     padding: 0;
     margin-bottom: 18px;
@@ -336,30 +349,21 @@ header nav ul li:hover::after {
     transition: color 0.4s ease-in-out;
 }
 
-
 /* Description */
-
 #jumbotron-desc {
     max-width: 640px;
-
     margin-top: 0;
 
     color: #18232D;
 
     font-size: 17px;
     font-weight: 600;
-
     line-height: 1.65;
 }
 
-
-/* =========================================================
-   HERO ARROWS
-   ========================================================= */
-
+/* Slide arrows */
 .icon_next {
     position: absolute;
-
     top: 50%;
     left: 25px;
     right: 25px;
@@ -371,15 +375,12 @@ header nav ul li:hover::after {
     align-items: center;
 
     z-index: 10;
-
     pointer-events: none;
 }
-
 
 .icon_next img {
     width: 44px;
     height: 44px;
-
     padding: 11px;
 
     background-color: rgba(7, 20, 38, 0.72);
@@ -388,7 +389,6 @@ header nav ul li:hover::after {
     border-radius: 50%;
 
     cursor: pointer;
-
     pointer-events: auto;
 
     backdrop-filter: blur(6px);
@@ -399,47 +399,61 @@ header nav ul li:hover::after {
         transform 0.25s ease;
 }
 
-
 .icon_next img:hover {
     background-color: #C64646;
-
     border-color: #C64646;
-
     transform: scale(1.08);
 }
 
-/* =========================================================
-   MAIN BODY
-   ========================================================= */
+@media (max-width: 600px) {
 
-.Section_places {
-    margin: 50px;
+    h1 {
+        font-size: clamp(56px, 17vw, 96px);
+    }
+
+    .jumbotron {
+        height: calc(100vh - 120px);
+        min-height: 600px;
+        padding: 35px 25px;
+    }
+
+    #jumbotron-subtitle {
+        font-size: 18px;
+    }
+
+    #jumbotron-desc {
+        max-width: 90%;
+        font-size: 14px;
+    }
+
+    .icon_next img {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
 }
 
 
-
 /* =========================================================
-   MAP / DESTINATIONS
+   05. MAP + DESTINATIONS
    ========================================================= */
 
 .Section-map {
-    display: grid;
+    position: relative;
 
+    display: grid;
     grid-template-columns:
         minmax(0, 2fr)
         minmax(300px, 0.75fr);
-
     align-items: center;
+    gap: 55px;
 
     width: 100%;
-
     margin: 0;
-    position: relative;
-
     padding: 35px 70px 80px 0;
-    gap: 55px;
 }
 
+/* Red line at the top of the section */
 .Section-map::before {
     content: "";
 
@@ -455,20 +469,13 @@ header nav ul li:hover::after {
     z-index: 3;
 }
 
-
-/* Map container */
-
+/* Map */
 .map_image {
     width: 100%;
-
     margin: 0;
     padding: 0;
-
     overflow: hidden;
 }
-
-
-/* SVG map */
 
 .world-map {
     display: block;
@@ -478,131 +485,87 @@ header nav ul li:hover::after {
 
     margin: 0;
     padding: 0;
-
     border: none;
 }
 
-
-/* =========================================================
-   MAP TEXT
-   ========================================================= */
-
+/* Text column */
 .map_text {
-    width: 100%;
-
+    width: auto;
+    margin-left: clamp(24px, 3vw, 60px);
     padding: 0;
-
     text-align: left;
 }
-
-
-/* Small text above heading */
 
 .map-eyebrow {
     margin-bottom: 12px;
 
     color: #C64646;
 
-    font-family: 'Manrope', sans-serif;
-
     font-size: 17px;
     font-weight: 700;
-
     letter-spacing: 0.18em;
-
     text-transform: uppercase;
 }
 
-
-/* Main map heading */
-
 .map_text h2 {
     margin: 0 0 22px;
-
     padding: 0;
 
+    font-size: clamp(52px, 4.6vw, 84px);
+    font-weight: 800;
+
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+
     color: #FFFFFF;
-
-    font-family: 'Archivo Black', sans-serif;
-
-    font-size: clamp(42px, 4vw, 64px);
-    font-weight: 400;
-
-    line-height: 0.95;
-    letter-spacing: -0.04em;
 }
-
-
-/* Main map paragraph */
 
 .map-description {
     max-width: 380px;
-
     margin-bottom: 35px;
 
     color: #C9D1DC;
 
-    font-family: 'Manrope', sans-serif;
-
     font-size: 17px;
     font-weight: 500;
-
     line-height: 1.7;
 }
-
-
-/* Destination prompt */
 
 .destination-title {
     margin-bottom: 16px;
 
     color: #FFFFFF;
 
-    font-family: 'Manrope', sans-serif;
-
     font-size: 18px;
     font-weight: 700;
 }
 
-
-/* Country list */
-
+/* Numbered country list */
 .destination-list {
     display: flex;
     flex-direction: column;
-
     align-items: flex-start;
-
     gap: 11px;
 
     margin: 0;
     padding: 0;
-
-    list-style: none;
 }
-
 
 .destination-list li {
     margin: 0;
     padding: 0;
-
-    list-style: none;
 }
-
-
-/* Country buttons */
 
 .destination-link {
     position: relative;
+
     padding: 0;
 
     background: none;
     color: #FFFFFF;
-
     border: none;
 
     font-family: 'Manrope', sans-serif;
-
     font-size: 18px;
     font-weight: 600;
 
@@ -619,14 +582,11 @@ header nav ul li:hover::after {
     outline-offset: 6px;
 }
 
-
-/* Little animated red line */
-
+/* Animated red underline */
 .destination-link::after {
     content: "";
 
     position: absolute;
-
     left: 0;
     bottom: 0;
 
@@ -638,13 +598,11 @@ header nav ul li:hover::after {
     transition: width 0.25s ease;
 }
 
-
 .destination-link:hover {
     color: #FFFFFF;
     transform: translateX(4px);
     opacity: 0.75;
 }
-
 
 .destination-link:hover::after {
     width: 100%;
@@ -657,276 +615,37 @@ header nav ul li:hover::after {
     text-underline-offset: 6px;
 }
 
-/* =========================================================
-   PACKAGES
-   ========================================================= */
-
-.Section-Package {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-
-    width: 100%;
-    max-width: 1400px;
-
-    margin: 0 auto;
-    padding: 0 30px 50px;
-}
-
-.Package {
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
-}
-
-.Package_info {
-    text-align: center;
-
-    background-image: url("assets/Package3.jpg");
-    background-size: cover;
-    background-position: center;
-
-    padding: 41px 51px;
-}
-
-.Package_bar {
-    display: flex;
-    align-items: center;
-
-    width: 100%;
-    gap: 5px;
-    padding: 10px;
-
-    flex-wrap: wrap;
-    background-color: #27418C;
-}
-
-.Package_bar img {
-    width: 20px;
-    height: 20px;
-}
-
-.Package_bar .white-text {
-    padding-bottom: 0;
-    font-size: 13px;
-}
-
-
-/* Package buttons */
-
-.Package_bar button {
-    padding: 8px 12px;
-
-    background-color: #C64646;
-    color: #FFFFFF;
-
-    font-family: 'Manrope', sans-serif;
-    font-weight: 600;
-
-    border-radius: 6px;
-    cursor: pointer;
-
-    transition:
-        background-color 0.25s ease,
-        transform 0.25s ease;
-}
-
-.Package_bar button:hover {
-    background-color: #A93B3B;
-    color: #FFFFFF;
-    transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer {
-    margin-top: auto;
-    padding: 20px;
-    background-color: #1E1E1E;
-    color: #FFFFFF;
-}
-
-.section_footer {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    width: 100%;
-    min-height: 145px;
-
-    gap: 50px;
-    padding: 20px 0;
-}
-
-.footer_decor,
-.footer_icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer_icons img {
-    width: 30px;
-    height: 30px;
-}
-
-.footer_menu ul {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.footer_info {
-    display: flex;
-}
-
-
 @media (max-width: 1000px) {
-
-    header nav {
-        flex-wrap: wrap;
-
-        gap: 18px;
-
-        padding: 15px 25px;
-    }
-
-
-    header nav ul {
-        margin-left: auto;
-
-        gap: 25px;
-
-        flex-wrap: wrap;
-    }
-
-
-    .login-button {
-        margin-left: 20px;
-    }
-
-    .Section_places {
-        flex-direction: column;
-
-        gap: 30px;
-    }
 
     .Section-map {
         grid-template-columns: 1fr;
-
         gap: 40px;
-
         padding: 60px 30px;
     }
-
 
     .world-map {
         height: 500px;
     }
 
-
     .map_text {
         max-width: 600px;
-
         margin: 0 auto;
-
         text-align: center;
     }
 
-
     .map-description {
         max-width: 520px;
-
         margin-left: auto;
         margin-right: auto;
-
         margin-bottom: 30px;
     }
-
 
     .destination-list {
         align-items: center;
     }
-
-    .Section-Package {
-        grid-template-columns: 1fr;
-    }
-
-
-    .section_footer {
-        flex-direction: column;
-
-        text-align: center;
-    }
 }
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
 @media (max-width: 600px) {
-
-    h1 {
-        font-size: clamp(48px, 16vw, 72px);
-    }
-
-
-    header nav > img {
-        width: 32px;
-    }
-
-
-    .Navbar_nav ul {
-        gap: 15px;
-
-        font-size: 13px;
-    }
-
-
-    .login-button {
-        width: 145px;
-        height: 40px;
-
-        font-size: 13px;
-    }
-
-
-    .jumbotron {
-        height: calc(100vh - 120px);
-
-        min-height: 600px;
-
-        padding: 35px 25px;
-    }
-
-
-    #jumbotron-subtitle {
-        font-size: 18px;
-    }
-
-
-    #jumbotron-desc {
-        max-width: 90%;
-
-        font-size: 14px;
-    }
-
-    .icon_next img {
-        width: 40px;
-        height: 40px;
-
-        padding: 10px;
-    }
-
-
-    .Section_places {
-        margin: 30px 20px;
-    }
 
     .Section-map {
         padding: 45px 20px;
@@ -941,48 +660,48 @@ footer {
     }
 }
 
+
 /* =========================================================
-   TICKET
+   06. BOARDING-PASS TICKET
    ========================================================= */
 
 .destination-pass-section {
-    width: 100%;
-    padding: 20px 70px 140px;
-
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    position: relative;
+    width: 100%;
+    padding: 20px 70px 110px;
 }
 
-
-/* Main ticket shape */
-.destination-ticket {
-    position: relative;
+.flight-path {
+    position: absolute;
+    left: 0;
+    top: 120px;
 
     width: 100%;
     height: 300px;
 
-    display: grid;
-    grid-template-columns: 135px 1fr;
-
-    background-color: #ece5d8;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    z-index: 0;
+    pointer-events: none;
 }
 
+.flight-path path {
+    fill: none;
+    stroke: #C64646;
+    stroke-width: 6;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+/* Wrapper: holds the ticket + the ghost tickets behind it */
 .ticket-stack {
     position: relative;
     width: min(1100px, 92%);
+    z-index: 1;
 }
 
-.destination-ticket {
-    z-index: 2;
-}
-
+/* Ghost tickets */
 .ticket-ghost {
     position: absolute;
     top: 0;
@@ -993,23 +712,28 @@ footer {
 }
 
 .ticket-ghost-1 {
+    --inset: 14px;
+
     left: 14px;
     right: 14px;
+
     background-color: #cfc6b3;
-    transform: translate(-10px,12px) rotate(-1.2deg);
+    transform: translate(-10px, 12px) rotate(-1.2deg);
     z-index: 1;
-    --inset: 14px;
 }
 
 .ticket-ghost-2 {
+    --inset: 28px;
+
     left: 28px;
     right: 28px;
+
     background-color: #b3a995;
     transform: translate(10px, 22px) rotate(1.4deg);
     z-index: 0;
-    --inset: 28px;
 }
 
+/* Notch punched through each ghost */
 .ticket-ghost::after {
     content: "";
 
@@ -1022,6 +746,24 @@ footer {
 
     background-color: #030C26;
     border-radius: 50%;
+}
+
+/* Main ticket */
+.destination-ticket {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns: 135px 1fr;
+
+    width: 100%;
+    height: 300px;
+
+    background-color: #ece5d8;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+
+    overflow: hidden;
 }
 
 /* Side cutouts */
@@ -1039,7 +781,6 @@ footer {
     border-radius: 50%;
 
     transform: translateY(-50%);
-
     z-index: 5;
 }
 
@@ -1051,6 +792,8 @@ footer {
     right: -15px;
 }
 
+/* ---------- Stub (NO. 02) ---------- */
+
 .ticket-stub {
     position: relative;
 
@@ -1061,8 +804,7 @@ footer {
     border-right: 2px dashed rgba(3, 12, 38, 0.75);
 }
 
-
-/* Top + bottom cutouts at perforation */
+/* Top + bottom cutouts at the perforation */
 .ticket-stub::before,
 .ticket-stub::after {
     content: "";
@@ -1087,16 +829,12 @@ footer {
     bottom: -15px;
 }
 
-
-/* Rotated NO. 02 */
 .ticket-number-wrap {
     display: flex;
     align-items: baseline;
-
     gap: 10px;
 
     transform: rotate(-90deg);
-
     white-space: nowrap;
 
     color: #030C26;
@@ -1104,44 +842,48 @@ footer {
 
 .ticket-number-wrap span {
     font-family: 'Barlow Condensed', sans-serif;
-
     font-size: 20px;
     font-weight: 700;
-
     letter-spacing: 0.2em;
 }
 
 #ticket-number {
     font-family: 'Barlow Condensed', sans-serif;
-
     font-size: 54px;
     font-weight: 800;
-
     line-height: 1;
 
     color: #030C26;
 }
 
-
-/* =========================================================
-   MAIN TICKET CONTENT
-   ========================================================= */
+/* ---------- Main content ---------- */
 
 .ticket-main {
     position: relative;
 
-    height: 100%;
-
-    padding: 24px 34px;
-
     display: flex;
     flex-direction: column;
+
+    height: 100%;
+    padding: 24px 34px;
+}
+
+.ticket-pass-title {
+    margin: 0 0 14px;
+
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+
+    color: #030C26;
 }
 
 .ticket-top {
     display: flex;
     align-items: flex-end;
     gap: 40px;
+
     padding-right: 240px;
 }
 
@@ -1150,82 +892,33 @@ footer {
     flex-shrink: 0;
 }
 
-/* BOARDING PASS */
-.ticket-pass-title {
-    margin: 0 0 14px;
-
-    font-family: 'Barlow Condensed', sans-serif;
-
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-
-    color: #030C26;
-}
-
-
-/* Destination / Coordinates / Season / Expect */
 .ticket-label {
     margin: 11px 0 3px;
 
-    font-family: 'Manrope', sans-serif;
-
     font-size: 11px;
     font-weight: 700;
-
     letter-spacing: 0.14em;
-
     text-transform: uppercase;
 
     color: #8a8170;
 }
 
-
-/* COUNTRY NAME */
+/* Country name */
 #ticket-country {
     margin: 0 0 8px;
     padding: 0;
 
     font-family: 'Barlow Condensed', sans-serif;
-
     font-size: 60px;
     font-weight: 800;
 
     line-height: 0.9;
     letter-spacing: 0.01em;
 
-    /* Overrides the global white h2 */
     color: #030C26;
 }
 
-
-/* Ticket values */
-#ticket-coordinates,
-#ticket-season,
-#ticket-expect {
-    margin: 0;
-
-    font-family: 'Manrope', sans-serif;
-
-    font-size: 16px;
-    font-weight: 600;
-
-    line-height: 1.35;
-
-    color: #18232D;
-}
-
-
-/* Make EXPECT slightly stronger */
-#ticket-expect {
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   ROUTE + BARCODE
-   ========================================================= */
-
+/* Route: ALP ---- plane ---- KEF */
 .ticket-route {
     flex: 1;
     min-width: 0;
@@ -1255,6 +948,82 @@ footer {
     font-size: 18px;
 }
 
+/* ---------- Flag stamp ---------- */
+
+.ticket-flag-stamp {
+    position: absolute;
+    top: 35%;
+    right: 70px;
+
+    width: 165px;
+    height: 118px;
+
+    transform: translateY(-50%) rotate(5deg);
+    z-index: 3;
+}
+
+.stamp-frame {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: fill;
+    z-index: 1;
+}
+
+#ticket-flag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 126px;
+    height: 85px;
+
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 2;
+}
+
+/* ---------- Details row ---------- */
+
+.ticket-details {
+    position: absolute;
+    left: 34px;
+    right: 245px;
+    bottom: 24px;
+
+    display: grid;
+    grid-template-columns: 1.45fr 0.8fr 1fr;
+    gap: 30px;
+
+    padding-top: 14px;
+    border-top: 1px solid rgba(3, 12, 38, 0.15);
+}
+
+.ticket-detail {
+    min-width: 0;
+}
+
+#ticket-coordinates,
+#ticket-season,
+#ticket-expect {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+
+    color: #18232D;
+}
+
+#ticket-expect {
+    font-weight: 700;
+}
+
+/* ---------- Barcode + View tour button ---------- */
+
 .ticket-barcode {
     position: absolute;
     right: 40px;
@@ -1273,88 +1042,53 @@ footer {
     opacity: 0.85;
 }
 
-
-/* =========================================================
-   FLAG STAMP
-   ========================================================= */
-
-.ticket-flag-stamp {
+.ticket-cta {
     position: absolute;
+    right: 40px;
+    bottom: 80px;
+    z-index: 4;
 
-    top: 35%;
-    right: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 
-    width: 165px;
-    height: 118px;
+    width: 150px;
+    height: 36px;
 
-    transform: translateY(-50%) rotate(5deg);
+    background-color: #C64646;
+    color: #FFFFFF;
 
-    z-index: 3;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    border-radius: 8px;
+
+    transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
-
-/* Black perforated stamp SVG */
-.stamp-frame {
-    position: absolute;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: fill;
-
-    z-index: 1;
+.ticket-cta span {
+    transition: transform 0.25s ease;
 }
 
-
-/* Country flag inside stamp */
-#ticket-flag {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    width: 126px;
-    height: 85px;
-
-    transform: translate(-50%, -50%);
-
-    object-fit: cover;
-
-    z-index: 2;
+.ticket-cta:hover {
+    background-color: #030C26;
+    transform: translateY(-2px);
 }
 
-
-/* Coordinates / Season / Expect row */
-.ticket-details {
-    position: absolute;
-
-    left: 34px;
-    right: 245px;
-    bottom: 24px;
-
-    display: grid;
-
-    grid-template-columns:
-        1.45fr
-        0.8fr
-        1fr;
-
-    gap: 30px;
-
-    padding-top: 14px;
-
-    border-top: 1px solid rgba(3, 12, 38, 0.15);
+.ticket-cta:hover span {
+    transform: translateX(4px);
 }
 
-.ticket-detail {
-    min-width: 0;
+.ticket-cta:focus-visible {
+    outline: 2px solid #030C26;
+    outline-offset: 3px;
 }
 
+/* ---------- Swap animation ---------- */
 
-/* =========================================================
-   RESPONSIVE TICKET
-   ========================================================= */
 .destination-ticket.ticket-swap {
     animation: ticketIn 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -1376,10 +1110,12 @@ footer {
     }
 }
 
+/* ---------- Responsive ---------- */
+
 @media (max-width: 1000px) {
 
     .destination-pass-section {
-        padding: 40px 30px 100px;
+        padding: 40px 30px 110px;
     }
 
     .destination-ticket {
@@ -1404,8 +1140,11 @@ footer {
     .ticket-barcode {
         display: none;
     }
-}
 
+    .flight-path {
+        top: 140px;
+    } 
+}
 
 @media (max-width: 700px) {
 
@@ -1413,11 +1152,14 @@ footer {
         padding: 35px 20px 60px;
     }
 
+    .flight-path {
+        display: none;
+    }
+
     .destination-ticket {
+        grid-template-columns: 85px 1fr;
         height: auto;
         min-height: 430px;
-
-        grid-template-columns: 85px 1fr;
     }
 
     .ticket-main {
@@ -1464,49 +1206,1318 @@ footer {
     }
 }
 
-/* Button */
-.ticket-cta {
-    position: absolute;
-    right: 40px;
-    bottom: 80px;
-    z-index: 4;
 
-    width: 150px;
+/* =========================================================
+   07. QUOTE DIVIDER (between ticket and Why Alpines)
+   ========================================================= */
+
+.why-quote-small {
+    margin-bottom: 12px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+
+    color: #C64646;
+}
+
+/* full-width cream "paper" band, same cream as the ticket */
+.quote-band {
+    width: 100%;
+    padding: 90px 0 0;
+
+    background-color: #ece5d8;
+}
+
+.why-quote {
+    width: min(1300px, 92%);
+    margin: 0 auto;
+    padding: 0 0 84px;
+    text-align: center;
+}
+
+.why-quote-main {
+    max-width: 1280px;
+    margin: 0 auto;
+
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(26px, 2.9vw, 44px);
+    font-weight: 600;
+
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+
+    color: #030C26;
+}
+
+/* Highlighted phrases */
+.hl {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+
+    margin: 0 4px;
+    padding: 0 10px;
+
+    color: #030C26;
+    background-color: rgba(198, 70, 70, 0.2);
+}
+
+/* Selection handles: a bar + a dot at each end */
+.hl::before,
+.hl::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    top: -6px;
+    bottom: -6px;
+}
+
+.hl::before {
+    left: -5px;
+    background:
+        radial-gradient(circle at 50% 4px, #C64646 0 4px, transparent 4.5px),
+        linear-gradient(#C64646, #C64646) center / 2px 100% no-repeat;
+}
+
+.hl::after {
+    right: -5px;
+    background:
+        radial-gradient(circle at 50% calc(100% - 4px), #C64646 0 4px, transparent 4.5px),
+        linear-gradient(#C64646, #C64646) center / 2px 100% no-repeat;
+}
+
+@media (max-width: 600px) {
+
+    .quote-band {
+        padding-top: 60px;
+    }
+
+    .why-quote {
+        padding-bottom: 56px;
+    }
+
+    .hl {
+       padding: 0 8px;
+    }
+}
+
+
+/* ---------- Numbers strip (bottom of the cream band) ---------- */
+
+.stats {
+    position: relative;
+
+    padding: 60px 6vw 76px;
+
+    /* perforation line, like the ticket */
+    border-top: 2px dashed rgba(3, 12, 38, 0.45);
+}
+
+/* punched holes at both ends of the perforation */
+.stats::before,
+.stats::after {
+    content: "";
+
+    position: absolute;
+    top: -16px;
+
+    width: 30px;
+    height: 30px;
+
+    background-color: #030C26;
+    border-radius: 50%;
+}
+
+.stats::before {
+    left: -15px;
+}
+
+.stats::after {
+    right: -15px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.stat {
+    padding: 4px 28px;
+    text-align: center;
+
+    border-left: 1px dashed rgba(3, 12, 38, 0.3);
+}
+
+.stat:first-child {
+    border-left: none;
+}
+
+.stat-number {
+    display: block;
+
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(54px, 5.4vw, 84px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.01em;
+
+    color: #030C26;
+}
+
+.stat-number em {
+    margin-left: 2px;
+
+    font-style: normal;
+    color: #C64646;
+}
+
+.stat-label {
+    margin: 14px 0 8px;
+
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    color: #030C26;
+}
+
+.stat-text {
+    max-width: 230px;
+    margin: 0 auto;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+
+    color: #5b5648;
+}
+
+@media (max-width: 1000px) {
+
+    .stats {
+        padding: 50px 40px 60px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 44px;
+    }
+
+    .stat:nth-child(odd) {
+        border-left: none;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .stats {
+        padding: 40px 20px 50px;
+    }
+
+    .stat {
+        padding: 4px 12px;
+    }
+
+    .stat-label {
+        font-size: 17px;
+        letter-spacing: 0.12em;
+    }
+
+    .stat-text {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   08. WHY ALPINES
+   ========================================================= */
+
+.why-alpines {
+    width: 100%;
+    padding: 90px 90px 90px;
+
+    background-color: #030C26;
+    color: #FFFFFF;
+}
+
+.why-alpines-content {
+    display: grid;
+    grid-template-columns: minmax(0, 660px) minmax(460px, 1fr);
+    align-items: stretch;
+    gap: 56px;
+
+    width: 100%;
+}
+
+/* ---------- Left: text ---------- */
+
+.why-alpines-text {
+    width: 100%;
+    max-width: 720px;
+}
+
+.why-eyebrow {
+    margin-bottom: 16px;
+
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    color: #C64646;
+}
+
+.why-title {
+    max-width: 700px;
+    margin: 0 0 28px;
+    padding: 0;
+
+    font-size: clamp(52px, 5.4vw, 88px);
+    font-weight: 800;
+
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+
+    color: #FFFFFF;
+}
+
+.why-intro {
+    max-width: 620px;
+    margin-bottom: 18px;
+
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.65;
+
+    color: #FFFFFF;
+}
+
+.why-description {
+    max-width: 650px;
+    margin-bottom: 16px;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.75;
+
+    color: #BAC4D0;
+}
+
+/* ---------- Numbered principles ---------- */
+
+.why-points {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+    margin-top: 42px;
+}
+
+.why-point {
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    align-items: start;
+    gap: 20px;
+}
+
+.why-number {
+    width: 36px;
     height: 36px;
 
+    color: #C64646;
+}
+
+.why-number svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.why-point-content h3 {
+    margin: 0 0 7px;
+
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+
+    color: #C64646;
+}
+
+.why-point-content p {
+    max-width: 560px;
+    margin: 0;
+
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+
+    color: #AEB9C5;
+}
+
+/* ---------- Right: image ---------- */
+
+.why-alpines-image {
+    position: relative;
+
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+
+    overflow: hidden;
+}
+
+.why-alpines-image img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+/* Small red accent */
+.why-alpines-image::before {
+    content: "";
+
+    position: absolute;
+    top: 24px;
+    left: 24px;
+
+    width: 70px;
+    height: 5px;
+
+    background-color: #C64646;
+
+    z-index: 2;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1000px) {
+
+    .why-alpines {
+        padding: 75px 40px 65px;
+    }
+
+    .why-alpines-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .why-alpines-text {
+        max-width: 760px;
+    }
+
+    .why-alpines-image {
+        height: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .why-alpines {
+        padding: 60px 24px 50px;
+    }
+
+    .why-title {
+        font-size: 50px;
+    }
+
+    .why-intro {
+        font-size: 17px;
+    }
+
+    .why-description {
+        font-size: 14px;
+    }
+
+    .why-points {
+        gap: 24px;
+        margin-top: 35px;
+    }
+
+    .why-point {
+        grid-template-columns: 42px 1fr;
+        gap: 14px;
+    }
+
+    .why-number {
+        width: 28px;
+        height: 28px;
+    }
+
+    .why-point-content h3 {
+        font-size: 19px;
+    }
+
+    .why-point-content p {
+        font-size: 14px;
+    }
+
+    .why-alpines-image {
+        height: 400px;
+    }
+}
+
+/* =========================================================
+   09. PACKAGES
+   ========================================================= */
+
+.packages {
+    position: relative;
+
+    width: 100%;
+    padding: 56px 0 56px;
+
+    overflow: hidden;
+}
+
+/* ---------- Header ---------- */
+
+.packages-header {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+
+    width: 100%;
+    padding: 0 90px;
+    margin: 0 0 26px;
+}
+
+.packages-eyebrow {
+    margin-bottom: 10px;
+
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+
+    color: #C64646;
+}
+
+.packages-title {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(44px, 4.4vw, 68px);
+    font-weight: 800;
+
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+
+    color: #FFFFFF;
+}
+
+.packages-lead {
+    max-width: 380px;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    color: #AEB9C5;
+}
+
+
+/* ---------- Carousel ---------- */
+
+.package-carousel {
+    position: relative;
+
+    /* same side margins as the title, so the cards start where it starts */
+    margin: 0 90px;
+    overflow: hidden;
+}
+
+/* soft fade at both margins (plain gradients, cheap to draw) */
+.package-carousel::before,
+.package-carousel::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+
+    width: 6%;
+
+    pointer-events: none;
+}
+
+.package-carousel::before {
+    left: 0;
+    background: linear-gradient(90deg, #030C26, rgba(3, 12, 38, 0));
+}
+
+.package-carousel::after {
+    right: 0;
+    background: linear-gradient(270deg, #030C26, rgba(3, 12, 38, 0));
+}
+
+.package-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+
+    width: max-content;
+    padding: 18px 0 40px;
+
+    transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform;
+
+    touch-action: pan-y;
+}
+
+
+/* used for the invisible jump back to the middle set of cards */
+.package-track.no-anim,
+.package-track.no-anim .package-card,
+.package-track.no-anim .package-blurb {
+    transition: none;
+}
+
+
+/* ---------- Card ---------- */
+
+.package-card {
+    /* the card height follows the window height, so the header,
+       the carousel and the category banner fit on one screen */
+    --card-h: clamp(420px, calc(100vh - 440px), 680px);
+
+    position: relative;
+    flex: 0 0 calc(var(--card-h) * 0.76);
+    height: var(--card-h);
+    margin: 0 -3px;   /* pulls the cards closer together */
+
+    border-radius: 22px;
+    overflow: hidden;
+
+    background-color: #0A1432;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    transform: scale(0.92);
+    opacity: 0.5;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+        opacity 0.45s ease;
+}
+
+.package-card.is-active {
+    z-index: 2;
+    transform: scale(1);
+    opacity: 1;
+
+    cursor: default;
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.package-card:not(.is-active):hover {
+    opacity: 0.75;
+}
+
+.package-card:focus-visible {
+    outline: 2px solid #C64646;
+    outline-offset: 4px;
+}
+
+.package-card img.package-photo {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.8s ease;
+}
+
+.package-card.is-active:hover img.package-photo {
+    transform: scale(1.04);
+}
+
+/* dark gradient so the text always reads */
+.package-card::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        180deg,
+        rgba(3, 12, 38, 0.35) 0%,
+        rgba(3, 12, 38, 0) 30%,
+        rgba(3, 12, 38, 0.75) 100%
+    );
+
+    pointer-events: none;
+}
+
+
+/* ---------- Top row: number (left) + price tag (right) ---------- */
+
+.package-top {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    right: 24px;
+    z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.package-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.06em;
+
+    color: #FFFFFF;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+.package-price {
+    padding: 5px 12px;
+
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+
+    color: #ece5d8;
+    background: #C64646;
+    border-radius: 3px;
+
+    transform: rotate(3deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ---------- Paper info panel (same cream as the ticket) ---------- */
+
+.package-info {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    z-index: 2;
+
+    padding: 28px 22px 18px;
+
+    color: #030C26;
+    background: #ece5d8;
+    border-radius: 0 0 16px 16px;
+}
+
+/* torn top edge, drawn with a strip of half-circle holes (no mask) */
+.package-info::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -6px;
+    height: 6px;
+
+    background-image: radial-gradient(circle at 50% 0, transparent 5px, #ece5d8 5.5px);
+    background-size: 20px 6px;
+    background-repeat: round no-repeat;
+}
+
+.package-country {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 8px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    color: #8a8170;
+}
+
+.package-country img {
+    width: 22px;
+    height: 15px;
+
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.package-name {
+    margin: 0 0 6px;
+
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+
+    line-height: 0.98;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+.package-place {
+    margin-bottom: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #5b5648;
+}
+
+.package-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+
+    padding-top: 10px;
+    margin-bottom: 12px;
+
+    border-top: 1px dashed rgba(3, 12, 38, 0.3);
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.package-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.package-meta span::before {
+    content: "";
+
+    width: 5px;
+    height: 5px;
+
+    background-color: #C64646;
+    border-radius: 50%;
+}
+
+/* only the active card shows its button and blurb */
+.package-blurb {
+    max-height: 0;
+    margin: 0;
+
+    overflow: hidden;
+    opacity: 0;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    color: #3a3f4d;
+
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+
+.package-card.is-active .package-blurb {
+    max-height: 100px;
+    margin-bottom: 14px;
+
+    opacity: 1;
+}
+
+.package-link {
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
 
-    background-color: #C64646;
-    color: #FFFFFF;
+    width: 100%;
+    height: 42px;
 
-    font-family: 'Manrope', sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
 
+    color: #FFFFFF;
+    background-color: #C64646;
     border-radius: 8px;
 
     transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
-.ticket-cta span {
-    transition: transform 0.25s ease;
-}
-
-.ticket-cta:hover {
-    background-color: #030C26;
+.package-link:hover {
+    background-color: #A93B3B;
     transform: translateY(-2px);
 }
 
-.ticket-cta:hover span {
+.package-link span {
+    transition: transform 0.25s ease;
+}
+
+.package-link:hover span {
     transform: translateX(4px);
 }
 
-.ticket-cta:focus-visible {
-    outline: 2px solid #030C26;
+/* inactive cards can't be tabbed into their buttons */
+.package-card:not(.is-active) .package-link {
+    pointer-events: none;
+}
+
+
+/* ---------- Bottom row: category banner (static) ---------- */
+
+.packages-controls {
+    width: 100%;
+    padding: 0 90px;
+    margin: 44px 0 0;
+}
+
+/* the six items spread across the full width of the screen */
+.package-cats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px clamp(28px, 3.4vw, 60px);
+
+    width: 100%;
+}
+
+.package-cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+
+    color: #7F8A9C;
+
+    transition: color 0.35s ease;
+}
+
+.package-cat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 54px;
+    height: 54px;
+
+    color: #030C26;
+    background-color: #ece5d8;
+    border-radius: 50%;
+
+    opacity: 0.35;
+
+    transition:
+        opacity 0.35s ease,
+        color 0.35s ease,
+        background-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* the highlights of the active card shine */
+.package-cat.is-lit {
+    color: #FFFFFF;
+}
+
+.package-cat.is-lit .package-cat-icon {
+    opacity: 1;
+
+    color: #FFFFFF;
+    background-color: #C64646;
+
+    box-shadow:
+        0 0 0 4px rgba(198, 70, 70, 0.28),
+        0 0 24px rgba(198, 70, 70, 0.7);
+}
+
+.package-cat-icon svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+}
+
+.packages-all {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+
+    height: 46px;
+    padding: 0 28px;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+    background-color: #C64646;
+
+    border: 1px solid #C64646;
+    border-radius: 8px;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.packages-all:hover {
+    background-color: transparent;
+    border-color: #FFFFFF;
+
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+}
+
+.packages-all:focus-visible,
+.package-link:focus-visible {
+    outline: 2px solid #C64646;
     outline-offset: 3px;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1000px) {
+
+    .packages {
+        padding: 70px 0 50px;
+    }
+
+    .packages-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+
+        padding: 0 40px;
+        margin-bottom: 40px;
+    }
+
+    .packages-controls {
+        padding: 0 40px;
+        margin-top: 32px;
+    }
+
+    .package-carousel {
+        margin: 0 40px;
+    }
+
+    .package-cats {
+        justify-content: center;
+        gap: 18px 36px;
+    }
+}
+
+/* short windows: hide the blurb so the photo keeps its room */
+@media (max-height: 820px) {
+
+    .package-blurb,
+    .package-card.is-active .package-blurb {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .packages {
+        padding: 70px 0 60px;
+    }
+
+    .package-carousel {
+        margin: 0 24px;
+    }
+
+    .package-track {
+        gap: 0;
+    }
+
+    .packages-header,
+    .packages-controls {
+        padding: 0 24px;
+    }
+
+    .package-card {
+        --card-h: 520px;
+    }
+
+    .package-name {
+        font-size: 30px;
+    }
+
+    .package-cat {
+        font-size: 13px;
+    }
+
+    .package-cat-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .packages-controls {
+        padding: 0 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .package-track,
+    .package-card,
+    .package-blurb,
+    .package-card img.package-photo {
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   10. FOOTER
+   ========================================================= */
+
+footer {
+    margin-top: auto;
+    padding: 90px 90px 28px;
+    background: #071A4A;
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-inner {
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
+/* closing call to action */
+.footer-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.footer-eyebrow {
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C64646;
+}
+
+.footer-cta h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(54px, 7vw, 104px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.footer-cta-side {
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+}
+
+.footer-cta-side p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.footer-btn {
+    display: inline-block;
+    padding: 16px 30px;
+    border-radius: 6px;
+    background: #C64646;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.footer-btn:hover {
+    background: #d95555;
+    transform: translateY(-2px);
+}
+
+/* columns */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 0.7fr 0.8fr 1.4fr;
+    gap: 56px;
+    padding: 64px 0;
+}
+
+.footer-logo {
+    display: inline-block;
+    margin-bottom: 18px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-brand p,
+.footer-news p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.footer-brand p { max-width: 320px; }
+
+.footer-socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.footer-socials a {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.footer-socials a:hover {
+    background: #C64646;
+    border-color: #C64646;
+    transform: translateY(-2px);
+}
+
+.footer-socials svg {
+    width: 18px;
+    height: 18px;
+}
+
+.footer-col h3 {
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-col ul a {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.68);
+    text-decoration: none;
+    transition: color 0.2s, padding-left 0.2s;
+}
+
+.footer-col ul a:hover {
+    color: #fff;
+    padding-left: 4px;
+}
+
+.footer-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 6px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.footer-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.footer-form input::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+.footer-form button {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 5px;
+    background: #C64646;
+    color: #fff;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.footer-form button:hover { background: #d95555; }
+
+.footer-office {
+    margin-top: 22px;
+    font-size: 13px !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 1000px) {
+    footer { padding: 70px 40px 24px; }
+    .footer-cta { flex-direction: column; align-items: flex-start; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 44px; }
+}
+
+@media (max-width: 600px) {
+    footer { padding: 56px 22px 22px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 6px; }
 }
