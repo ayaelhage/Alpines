@@ -206,9 +206,19 @@ function selectCountry(country) {
 
 // LOAD SVG MAP
 
-worldMap.addEventListener("load", () => {
+let mapReady = false;
 
-    svgDocument = worldMap.contentDocument;
+function initMap() {
+
+    if (mapReady) return;
+
+    const doc = worldMap.contentDocument;
+
+    // not ready yet: the SVG has no content
+    if (!doc || !doc.documentElement || doc.querySelectorAll("path").length === 0) return;
+
+    mapReady = true;
+    svgDocument = doc;
 
     //Pins
     const pinOffsets = {
@@ -330,8 +340,10 @@ worldMap.addEventListener("load", () => {
 });
 
     selectCountry("Iceland");
+}
 
-});
+worldMap.addEventListener("load", initMap);
+window.addEventListener("load", initMap);
 
 // country list buttons
 
@@ -674,3 +686,5 @@ if ("IntersectionObserver" in window &&
 
     statCounters.forEach(counter => statsObserver.observe(counter));
 }
+
+initMap();
