@@ -6,7 +6,7 @@ The project started as a front-end build using HTML, CSS and vanilla JavaScript,
 
 > **Status:** work in progress. The desktop home page is complete. Explore, Packages, responsive layouts and backend functionality are planned next.
 
-**Live demo:** _add your GitHub Pages link here_
+**Live demo:** https://ayaelhage.github.io/Alpines/
 
 <p align="center">
   <img src="assets/map-ticket.png" alt="Alpines interactive map and boarding pass" width="900">
