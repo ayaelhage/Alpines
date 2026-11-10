@@ -161,10 +161,8 @@ header nav {
 }
 
 /* Pine logo */
-header nav > img {
+header nav > a:first-child img {
     display: block;
-    flex-shrink: 0;
-
     width: 34px;
     height: auto;
 }
@@ -288,7 +286,7 @@ header nav ul li:hover::after {
 
 @media (max-width: 600px) {
 
-    header nav > img {
+    header nav > a:first-child img {
         width: 32px;
     }
 

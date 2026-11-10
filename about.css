@@ -1,0 +1,1261 @@
+/* =========================================================
+   ALPINES — ABOUT PAGE   (load AFTER style.css)
+
+   01. Shared
+   02. Story (hero + interactive desk)
+   03. How it works
+   04. Creator
+   05. FAQ + Contact (postcard)
+   06. Responsive
+   Uses --font-title and --title-size from style.css.
+   ========================================================= */
+
+
+/* =========================================================
+   01. SHARED
+   ========================================================= */
+
+.about-page {
+    --navy: #030C26;
+    --cream: #ece5d8;
+    --paper: #fbf8f1;
+    --red: #C64646;
+
+    width: 100%;
+    background-color: var(--navy);
+    color: #fff;
+    overflow-x: clip;
+}
+
+/* current page in the navbar */
+header nav ul li a[aria-current="page"] {
+    color: #FFFFFF;
+}
+
+header nav ul li:has(a[aria-current="page"])::after {
+    width: 100%;
+}
+
+.about-section-inner {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.about-eyebrow {
+    margin-bottom: 18px;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    color: var(--red);
+}
+
+/* every section title on this page shares one size */
+.about-title {
+    max-width: 900px;
+    margin: 0;
+    padding: 0;
+
+    font-family: var(--font-title);
+    font-size: var(--title-size);
+    font-weight: 600;
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+
+    color: #fff;
+}
+
+/* perforated edge where two sections meet (same idea as the ticket) */
+.perf-top {
+    position: relative;
+}
+
+.perf-top::before {
+    content: "";
+
+    position: absolute;
+    top: -7px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+
+    height: 7px;
+
+    background-image: radial-gradient(circle at 50% 0, transparent 6px, var(--edge) 6.5px);
+    background-size: 22px 7px;
+    background-repeat: repeat-x;
+}
+
+/* buttons / links */
+.about-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 15px 28px;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #fff;
+    background-color: var(--red);
+    border: 1px solid var(--red);
+    border-radius: 8px;
+
+    transition: background-color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.about-btn:hover {
+    background-color: transparent;
+    border-color: #fff;
+    transform: translateY(-2px);
+}
+
+.about-link {
+    padding-bottom: 4px;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #fff;
+    border-bottom: 2px solid var(--red);
+
+    transition: color 0.25s ease;
+}
+
+.about-link:hover {
+    color: var(--red);
+}
+
+.about-btn:focus-visible,
+.about-link:focus-visible,
+.faq-item summary:focus-visible,
+.postcard-btn:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   02. STORY
+   ========================================================= */
+
+.about-hero {
+    padding: 80px 6vw 120px;
+    background-color: var(--navy);
+}
+
+.about-hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: center;
+    gap: 56px;
+
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.about-hero-text {
+    max-width: 560px;
+}
+
+.about-heading {
+    margin: 0 0 26px;
+
+    font-family: var(--font-title);
+    font-size: clamp(48px, 5.2vw, 84px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    text-transform: none;
+
+    color: var(--cream);
+}
+
+.about-lead {
+    margin-bottom: 18px;
+
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.5;
+
+    color: #fff;
+}
+
+.about-text {
+    max-width: 520px;
+    margin-bottom: 34px;
+
+    font-size: 16px;
+    line-height: 1.8;
+
+    color: #B6C1CF;
+}
+
+.about-hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 30px;
+}
+
+
+/* ---------- Interactive desk: travel clutter you can move around ---------- */
+/* Everything inside is sized in cqw (1% of the desk's width),
+   so the whole scene scales together at any screen size. */
+
+.about-desk {
+    position: relative;
+    container-type: inline-size;
+
+    width: 100%;
+    aspect-ratio: 7 / 6;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 1px 1px, rgba(236, 229, 216, 0.07) 1px, transparent 0) 0 0 / 24px 24px,
+        radial-gradient(circle at 30% 18%, #112252 0%, #081334 72%);
+    border: 1px solid rgba(236, 229, 216, 0.14);
+    border-radius: 18px;
+    box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.45);
+}
+
+.desk-hint {
+    margin-top: 16px;
+
+    font-family: var(--font-title);
+    font-size: 15px;
+    font-style: italic;
+    text-align: center;
+
+    color: #7F8A9C;
+}
+
+/* every loose item on the desk */
+.item {
+    --r: 0deg;
+    --depth: 1;
+
+    position: absolute;
+
+    /* drag offset + tilt */
+    transform: translate(var(--dx, 0px), var(--dy, 0px)) rotate(var(--r));
+    /* mouse parallax (set on .about-desk by the script) */
+    translate: calc(var(--mx, 0) * var(--depth) * 1.6cqw) calc(var(--my, 0) * var(--depth) * 1.6cqw);
+
+    margin: 0;
+
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+
+    filter: drop-shadow(0 1cqw 1.4cqw rgba(0, 0, 0, 0.45));
+    transition: scale 0.25s ease, filter 0.25s ease;
+    animation: settle 0.7s ease backwards;
+    animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+.item img {
+    pointer-events: none;
+}
+
+.item:hover {
+    scale: 1.03;
+}
+
+.item.dragging {
+    cursor: grabbing;
+    scale: 1.06;
+    filter: drop-shadow(0 2cqw 2.4cqw rgba(0, 0, 0, 0.55));
+}
+
+@keyframes settle {
+    from { opacity: 0; scale: 0.88; }
+}
+
+
+/* ----- photos: thin white prints ----- */
+
+.photo {
+    padding: 1.1cqw;
+    background-color: #f6f1e6;
+}
+
+.photo img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+.photo-main img {
+    aspect-ratio: 4 / 5;
+}
+
+.photo-small img {
+    aspect-ratio: 1 / 1;
+}
+
+/* strip of washi tape on the big photo */
+.photo-main::before {
+    content: "";
+
+    position: absolute;
+    top: -1.6cqw;
+    left: 50%;
+    z-index: 2;
+
+    width: 12cqw;
+    height: 3.2cqw;
+
+    background:
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0 0.5cqw, transparent 0.5cqw 1cqw),
+        rgba(198, 70, 70, 0.82);
+
+    transform: translateX(-50%) rotate(-3deg);
+}
+
+
+/* ----- cut-out PNGs (assets/*.png): only the width is set, height follows ----- */
+
+.png {
+    display: block;
+    height: auto;
+}
+
+
+/* ----- boarding pass: a small version of the home page ticket ----- */
+
+.ticket {
+    width: 56cqw;
+}
+
+.t-body {
+    display: grid;
+    grid-template-columns: 8cqw 1fr;
+
+    color: var(--navy);
+    background-color: var(--cream);
+    border-radius: 1cqw;
+
+    /* round notches: left + right edge, and top + bottom of the tear line */
+    -webkit-mask:
+        radial-gradient(circle 1.3cqw at 0 50%, #0000 97%, #000),
+        radial-gradient(circle 1.3cqw at 100% 50%, #0000 97%, #000),
+        radial-gradient(circle 1.3cqw at 8cqw 0, #0000 97%, #000),
+        radial-gradient(circle 1.3cqw at 8cqw 100%, #0000 97%, #000);
+    -webkit-mask-composite: source-in;
+    mask:
+        radial-gradient(circle 1.3cqw at 0 50%, #0000 97%, #000),
+        radial-gradient(circle 1.3cqw at 100% 50%, #0000 97%, #000),
+        radial-gradient(circle 1.3cqw at 8cqw 0, #0000 97%, #000),
+        radial-gradient(circle 1.3cqw at 8cqw 100%, #0000 97%, #000);
+    mask-composite: intersect;
+}
+
+.t-body small {
+    display: block;
+
+    font-size: max(6px, 0.85cqw);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    color: #8a8170;
+}
+
+.t-stub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-right: 0.3cqw dashed rgba(3, 12, 38, 0.7);
+}
+
+.t-stub span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+
+    font-size: max(7px, 1.2cqw);
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+}
+
+.t-stub b {
+    font-family: var(--font-title);
+    font-size: 3.6cqw;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.t-main {
+    position: relative;
+
+    padding: 2cqw 2.6cqw 2.2cqw;
+}
+
+.t-title {
+    margin-bottom: 1.2cqw;
+
+    font-size: max(8px, 1.4cqw);
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.t-top {
+    display: flex;
+    align-items: flex-end;
+    gap: 3cqw;
+
+    padding-right: 13cqw;
+}
+
+.t-dest {
+    display: block;
+
+    font-family: var(--font-title);
+    font-size: 4.4cqw;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+}
+
+.t-route {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 0.8cqw;
+
+    padding-bottom: 0.8cqw;
+}
+
+.t-route i {
+    font-size: max(8px, 1.8cqw);
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.t-line {
+    flex: 1;
+    border-top: 0.25cqw dashed rgba(3, 12, 38, 0.35);
+}
+
+.t-plane {
+    width: 1.8cqw;
+    height: 1.8cqw;
+
+    transform: rotate(90deg);
+}
+
+.t-flag {
+    position: absolute;
+    top: 3cqw;
+    right: 3cqw;
+
+    width: 10.5cqw;
+    aspect-ratio: 128 / 94;
+
+    transform: rotate(5deg);
+}
+
+.t-flag-frame {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: fill;
+}
+
+.t-flag-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 76.5%;
+    height: 70%;
+
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+.t-details {
+    display: grid;
+    grid-template-columns: 0.8fr 1.4fr;
+    gap: 3cqw;
+
+    width: 62%;
+    margin-top: 1.8cqw;
+    padding-top: 1.2cqw;
+
+    border-top: 1px solid rgba(3, 12, 38, 0.15);
+
+    font-size: max(8px, 1.35cqw);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.t-details small {
+    margin-bottom: 0.3cqw;
+}
+
+.t-barcode {
+    position: absolute;
+    right: 2.6cqw;
+    bottom: 2.2cqw;
+
+    width: 11cqw;
+    height: 3.4cqw;
+
+    background: repeating-linear-gradient(
+        90deg,
+        var(--navy) 0 0.18cqw, transparent 0.18cqw 0.42cqw,
+        var(--navy) 0.42cqw 0.5cqw, transparent 0.5cqw 0.84cqw
+    );
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   03. HOW IT WORKS (cream paper)
+   ========================================================= */
+
+.about-process {
+    --edge: var(--cream);
+
+    padding: 100px 6vw 110px;
+    background-color: var(--cream);
+}
+
+.about-process .about-title {
+    color: var(--navy);
+}
+
+.process-steps {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+
+    margin-top: 64px;
+    padding: 0;
+
+    list-style: none;
+}
+
+/* dashed line running through the dots, like the ticket perforation */
+.process-steps::before {
+    content: "";
+
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 0;
+
+    border-top: 2px dashed rgba(3, 12, 38, 0.35);
+}
+
+.process-step {
+    position: relative;
+    padding-top: 40px;
+}
+
+.process-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 18px;
+    height: 18px;
+
+    background-color: var(--red);
+    border: 4px solid var(--cream);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--red);
+}
+
+.process-num {
+    display: block;
+    margin-bottom: 10px;
+
+    font-family: var(--font-title);
+    font-size: 52px;
+    font-weight: 600;
+    line-height: 1;
+
+    color: rgba(3, 12, 38, 0.16);
+}
+
+.process-step h3 {
+    margin: 0 0 10px;
+
+    font-family: var(--font-title);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+
+    color: var(--navy);
+}
+
+.process-step p {
+    max-width: 260px;
+
+    font-size: 15px;
+    line-height: 1.7;
+
+    color: #4d505c;
+}
+
+
+/* =========================================================
+   05. FAQ (cream paper)
+   ========================================================= */
+
+.about-faq {
+    --edge: var(--cream);
+
+    padding: 100px 6vw 90px;
+    background-color: var(--cream);
+    color: var(--navy);
+}
+
+.faq-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 80px;
+    align-items: start;
+}
+
+.about-faq .about-title {
+    color: var(--navy);
+}
+
+.about-text-dark {
+    max-width: 380px;
+    margin-top: 22px;
+
+    font-size: 16px;
+    line-height: 1.75;
+
+    color: #4d505c;
+}
+
+.faq-intro {
+    position: sticky;
+    top: 40px;
+}
+
+.faq-item {
+    border-bottom: 1px dashed rgba(3, 12, 38, 0.35);
+}
+
+.faq-item:first-child {
+    border-top: 1px dashed rgba(3, 12, 38, 0.35);
+}
+
+.faq-item summary {
+    position: relative;
+
+    padding: 24px 44px 24px 0;
+
+    font-family: var(--font-title);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+
+    color: var(--navy);
+    cursor: pointer;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+/* plus / minus */
+.faq-item summary::before,
+.faq-item summary::after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    right: 6px;
+
+    width: 16px;
+    height: 2px;
+
+    background-color: var(--red);
+
+    transition: transform 0.3s ease;
+}
+
+.faq-item summary::after {
+    transform: rotate(90deg);
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(0deg);
+}
+
+.faq-item p {
+    max-width: 560px;
+    padding: 0 44px 26px 0;
+
+    font-size: 15px;
+    line-height: 1.75;
+
+    color: #4d505c;
+}
+
+
+/* =========================================================
+   06. CREATOR (navy)
+   ========================================================= */
+
+.about-creator {
+    --edge: var(--navy);
+
+    padding: 110px 6vw;
+    background-color: var(--navy);
+}
+
+.creator-layout {
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    align-items: center;
+    gap: 90px;
+
+    max-width: 1100px;
+}
+
+/* portrait as a taped polaroid */
+.creator-photo {
+    position: relative;
+
+    padding: 14px 14px 20px;
+
+    background-color: var(--cream);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+
+    transform: rotate(-3deg);
+}
+
+.creator-photo::before {
+    content: "";
+
+    position: absolute;
+    top: -14px;
+    left: 50%;
+
+    width: 96px;
+    height: 28px;
+
+    background-color: rgba(198, 70, 70, 0.7);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+
+    transform: translateX(-50%) rotate(3deg);
+}
+
+.creator-photo-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    aspect-ratio: 4 / 5;
+
+    background-color: #142347;
+}
+
+.creator-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.creator-photo-frame span {
+    padding: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-align: center;
+
+    color: #AEB9C5;
+}
+
+.creator-text .about-title {
+    margin-bottom: 26px;
+}
+
+.creator-text p {
+    max-width: 560px;
+    margin-bottom: 16px;
+
+    font-size: 16px;
+    line-height: 1.8;
+
+    color: #B6C1CF;
+}
+
+.creator-text p strong {
+    color: #fff;
+}
+
+.creator-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin: 26px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.creator-tags li {
+    padding: 7px 14px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: var(--cream);
+    border: 1px solid rgba(236, 229, 216, 0.4);
+    border-radius: 100px;
+}
+
+.creator-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 28px;
+
+    margin-top: 30px;
+}
+
+.creator-links a {
+    padding-bottom: 5px;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+
+    color: var(--cream);
+    border-bottom: 2px solid var(--red);
+
+    transition: color 0.25s ease;
+}
+
+.creator-links a:hover {
+    color: var(--red);
+}
+
+
+/* =========================================================
+   07. CONTACT (postcard on cream)
+   ========================================================= */
+
+.about-contact {
+    position: relative;
+
+    padding: 0 6vw 120px;
+    background-color: var(--cream);
+    color: var(--navy);
+}
+
+/* FAQ and contact share one cream page: a dashed line separates them */
+.about-contact .about-section-inner {
+    padding-top: 90px;
+    border-top: 1px dashed rgba(3, 12, 38, 0.28);
+}
+
+.about-contact .about-title {
+    color: var(--navy);
+}
+
+.contact-head {
+    margin-bottom: 48px;
+}
+
+.postcard {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+
+    background-color: var(--paper);
+    border-radius: 6px;
+    box-shadow:
+        0 2px 0 rgba(3, 12, 38, 0.06),
+        0 24px 50px rgba(3, 12, 38, 0.22);
+}
+
+/* left: the message */
+.postcard-form {
+    padding: 44px 48px 44px 44px;
+
+    border-right: 2px dashed rgba(3, 12, 38, 0.3);
+}
+
+.postcard-greeting {
+    margin-bottom: 30px;
+
+    font-family: var(--font-title);
+    font-size: 28px;
+    font-style: italic;
+
+    color: var(--navy);
+}
+
+.postcard-field {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.postcard-field span {
+    display: block;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    color: #8a8170;
+}
+
+.postcard-field input,
+.postcard-field textarea {
+    display: block;
+
+    width: 100%;
+    padding: 8px 0 9px;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    color: var(--navy);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(3, 12, 38, 0.4);
+    border-radius: 0;
+    outline: none;
+    resize: vertical;
+
+    transition: border-color 0.25s ease;
+}
+
+.postcard-field input:focus,
+.postcard-field textarea:focus {
+    border-bottom-color: var(--red);
+}
+
+.postcard-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 15px 28px;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #fff;
+    background-color: var(--red);
+    border-radius: 8px;
+    cursor: pointer;
+
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.postcard-btn:hover {
+    background-color: var(--navy);
+    transform: translateY(-2px);
+}
+
+.postcard-hint {
+    margin-top: 14px;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: #8a8170;
+}
+
+/* right: the address side */
+.postcard-side {
+    position: relative;
+
+    padding: 44px 44px 44px 48px;
+}
+
+.postcard-stamp {
+    position: absolute;
+    top: 26px;
+    right: 30px;
+
+    width: 128px;
+    height: 94px;
+
+    transform: rotate(4deg);
+}
+
+.postcard-stamp .stamp-frame {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: fill;
+    z-index: 1;
+}
+
+.postcard-stamp .stamp-flag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 98px;
+    height: 66px;
+
+    object-fit: cover;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+}
+
+.postcard-postmark {
+    position: absolute;
+    top: 40px;
+    right: 160px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 92px;
+    height: 92px;
+
+    border: 2px solid rgba(3, 12, 38, 0.3);
+    border-radius: 50%;
+    color: rgba(3, 12, 38, 0.38);
+
+    transform: rotate(-14deg);
+}
+
+.postcard-postmark span {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.postcard-postmark small {
+    margin-top: 3px;
+
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.postcard-address {
+    padding-top: 128px;
+}
+
+.postcard-address .postcard-label {
+    margin: 24px 0 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #8a8170;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.postcard-address .postcard-label:first-child {
+    margin-top: 0;
+}
+
+.postcard-address p {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+
+    color: var(--navy);
+}
+
+.postcard-name {
+    font-family: var(--font-title);
+    font-size: 30px !important;
+    font-weight: 600 !important;
+    line-height: 1.1 !important;
+}
+
+.postcard-role {
+    margin-top: 4px;
+
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: var(--red) !important;
+}
+
+.postcard-address a {
+    border-bottom: 1px solid var(--red);
+    word-break: break-word;
+
+    transition: color 0.25s ease;
+}
+
+.postcard-address a:hover {
+    color: var(--red);
+}
+
+
+/* =========================================================
+   08. RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .about-hero {
+        padding: 60px 30px 90px;
+    }
+
+    .about-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 70px;
+    }
+
+    .about-desk-wrap {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .about-process,
+    .about-faq,
+    .about-creator,
+    .about-contact {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 56px;
+    }
+
+    .process-steps::before {
+        display: none;
+    }
+
+
+    .faq-layout,
+    .creator-layout {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .faq-intro {
+        position: static;
+    }
+
+    .creator-photo {
+        max-width: 300px;
+    }
+
+    .postcard {
+        grid-template-columns: 1fr;
+    }
+
+    .postcard-form {
+        border-right: 0;
+        border-bottom: 2px dashed rgba(3, 12, 38, 0.3);
+    }
+
+    .postcard-side {
+        order: -1;
+        padding-bottom: 20px;
+    }
+
+    .postcard-address {
+        padding-top: 110px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .about-hero {
+        padding: 50px 22px 70px;
+    }
+
+    .about-heading {
+        font-size: 46px;
+    }
+
+
+    .about-process,
+    .about-faq,
+    .about-creator,
+    .about-contact {
+        padding: 70px 22px 80px;
+    }
+
+    .process-steps {
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+    }
+
+    .faq-item summary {
+        font-size: 19px;
+    }
+
+    .postcard-form,
+    .postcard-side {
+        padding: 30px 24px;
+    }
+
+    .postcard-stamp {
+        right: 20px;
+        top: 20px;
+    }
+
+    .postcard-postmark {
+        right: 118px;
+        top: 34px;
+    }
+
+    .postcard-address {
+        padding-top: 100px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .item,
+    .faq-item summary::before,
+    .faq-item summary::after {
+        transition: none;
+        animation: none;
+    }
+}
