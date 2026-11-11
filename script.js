@@ -385,6 +385,7 @@ function updateTicket(country) {
     `assets/${country.toLowerCase()}-flag.svg`;
   document.querySelector("#ticket-flag").alt = `${country} flag`;
   document.querySelector("#ticket-code").textContent = data.code;
+  document.querySelector("#ticket-cta").href = "explore.html#" + country.toLowerCase();
 }
 
 // =========================================================

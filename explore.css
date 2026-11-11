@@ -1,0 +1,384 @@
+/* =========================================================
+   ALPINES — EXPLORE PAGE   (load AFTER style.css)
+
+   01. Shared
+   02. Hero (split: left = title + board, right = window)
+   03. Departure board (blends into the background)
+   04. Plane window
+   05. Selected country + map
+   06. Responsive
+   Uses --font-title and --title-size from style.css.
+   ========================================================= */
+
+
+/* =========================================================
+   01. SHARED
+   ========================================================= */
+
+.explore-page {
+    --navy: #030C26;
+    --cream: #ece5d8;
+    --paper: #fbf8f1;
+    --red: #C64646;
+
+    /* colour of the right half of the hero (JS will change it per country later) */
+    --window-bg: #0d2347;
+
+
+    background-color: var(--navy);
+    color: #fff;
+    overflow-x: clip;
+}
+
+/* current page in the navbar (same rule as the About page) */
+header nav ul li a[aria-current="page"] {
+    color: #FFFFFF;
+}
+
+header nav ul li:has(a[aria-current="page"])::after {
+    width: 100%;
+}
+
+.explore-inner {
+    width: 100%;
+    padding: 0 var(--page-pad);        /* same side margin as the hero and Home */
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   02. HERO
+   Two columns: left (navy) and right (coloured panel).
+   Top padding = the space between the header and the title.
+   ========================================================= */
+
+.explore-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    column-gap: 56px;                       /* space between the two halves */
+    padding: 80px var(--page-pad) 28px;
+}
+
+.explore-hero-left {
+    padding: 0;
+}
+
+.explore-hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+
+    background-color: var(--window-bg);
+    border-radius: 24px;
+    transition: background-color 0.6s ease;
+}
+
+.explore-title {
+    max-width: none;
+    margin: 0 0 20;
+    text-wrap: balance;
+
+    font-family: var(--font-title);
+    font-size: var(--hero-title-size);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    text-transform: none;
+
+    color: var(--cream);
+}
+
+.explore-lead {
+    max-width: none;
+    margin: 12px 0 28px;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+
+    color: #B6C1CF;
+}
+
+.explore-eyebrow {
+    margin-bottom: 18px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+}
+
+
+/* =========================================================
+   03. DEPARTURE BOARD
+   No box: same navy as the page, thin cream lines only.
+   One .board-row per country (JavaScript adds them).
+   ========================================================= */
+
+.board {
+    font-family: 'DotGothic16', monospace;
+    border-top: 1px solid rgba(236, 229, 216, 0.25);
+    border-bottom: 1px solid rgba(236, 229, 216, 0.25);
+}
+
+.board-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    color: #9fd8ff;
+}
+
+.board-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: clamp(20px, 2.2vw, 30px);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.board-title svg {
+    width: 1.1em;
+    height: 1.1em;
+    fill: currentColor;
+}
+
+.board-clock {
+    padding: 2px 14px;
+    font-size: clamp(18px, 2vw, 28px);
+    color: #9fd8ff;
+    border: 1px solid rgba(236, 229, 216, 0.45);
+    border-radius: 8px;
+}
+
+/* the Gate column is hidden (4th column) */
+.board-head,
+.board-row {
+    display: grid;
+    grid-template-columns: 0.7fr 1.5fr 1.2fr 1.3fr;
+    gap: 12px;
+    white-space: nowrap;
+    padding: 6px 12px;
+}
+
+.board-head span:nth-child(4),
+.board-row span:nth-child(4) {
+    display: none;
+}
+
+.board-head {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(236, 229, 216, 0.55);
+}
+
+.board-rows {
+    padding-bottom: 12px;
+}
+
+.board-row {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-radius: 6px;
+    text-align: left;
+    font: inherit;
+    font-size: clamp(15px, 1.5vw, 21px);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cream);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* destination + info columns */
+.board-row span:nth-child(2) {
+    color: var(--cream);
+}
+
+.board-row span:nth-child(5) {
+    color: rgba(236, 229, 216, 0.55);
+}
+
+.board-row:hover {
+    background: rgba(236, 229, 216, 0.06);
+}
+
+.board-row:focus-visible {
+    outline: 2px solid var(--cream);
+    outline-offset: -2px;
+}
+
+.board-row.is-active {
+    background: rgba(198, 70, 70, 0.16);
+}
+
+.board-row.is-active .board-info {
+    color: #ff7a7a;
+}
+
+
+/* =========================================================
+   04. PLANE WINDOW
+   Shape = rounded rectangle with a big radius.
+   Change border-radius to make it more / less oval.
+   ========================================================= */
+
+.window-kicker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 20px;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+
+    color: var(--cream);
+}
+
+.window-kicker::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+}
+
+.window {
+    display: none;   /* window comes back in a later step */
+    position: relative;
+    width: clamp(200px, 19vw, 280px);
+    aspect-ratio: 3 / 4;
+    padding: 12px;
+    box-sizing: border-box;
+
+    border-radius: 48% / 36%;
+    background: linear-gradient(160deg, #c9d2dc, #7d8a99);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.window-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 46% / 34%;
+}
+
+/* soft shine + inner shadow on the glass */
+.window::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 46% / 34%;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 40%);
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.45);
+}
+
+.country-name,
+.country-tagline {
+    display: none;   /* kept in the HTML only so explore.js does not break */
+}
+
+.country-name {
+    margin-top: 24px;
+    padding-bottom: 0;
+
+    font-family: var(--font-title);
+    font-size: var(--title-size);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: none;
+
+    color: #fff;
+}
+
+.country-tagline {
+    max-width: 34ch;
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+
+/* =========================================================
+   05. SELECTED COUNTRY + MAP
+   ========================================================= */
+
+.explore-country {
+    padding: 0 0 clamp(48px, 6vw, 88px);
+}
+
+.country-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 68px;
+    list-style: none;
+}
+
+.country-facts li {
+    padding: 12px 18px;
+    background: #0b1330;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+}
+
+.fact-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+}
+
+.fact-value {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Leaflet needs a real height or the map is invisible */
+.explore-map {
+    width: 100%;
+    height: clamp(360px, 55vh, 560px);
+
+    background: #0b1330;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   06. RESPONSIVE  (full mobile pass comes later)
+   ========================================================= */
+
+@media (max-width: 900px) {
+    .explore-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .explore-hero {
+        padding: 40px 25px;
+        row-gap: 32px;
+    }
+
+    .explore-inner {
+        padding: 0 25px;
+    }
+}

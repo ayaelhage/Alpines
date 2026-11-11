@@ -3,6 +3,8 @@
 :root {
     --font-title: 'Fraunces', Georgia, serif;
     --title-size: clamp(38px, 3.3vw, 52px);   /* every section title uses this */
+    --page-pad: 6vw;                              /* side margin for heroes */
+    --hero-title-size: clamp(44px, 4.6vw, 72px);  /* big hero titles */
 }
 
 /* =========================================================
@@ -306,7 +308,6 @@ header nav ul li:hover::after {
 /* =========================================================
    04. HERO
    ========================================================= */
-
 .jumbotron {
     position: relative;
 
@@ -436,7 +437,27 @@ header nav ul li:hover::after {
     }
 }
 
+/* ===== AURORA HERO GLOW  ===== */
+.aurora {
+    position: relative;
+    isolation: isolate;          /* keeps the glow behind the hero's content */
+}
 
+.aurora::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;               /* how far the glow reaches down */
+    z-index: -1;
+    pointer-events: none;        /* so it never blocks clicks */
+
+    background:
+        radial-gradient(ellipse 30% 100% at 15% 0%, rgba(198, 70, 70, 0.20), transparent 70%),
+        radial-gradient(ellipse 45% 100% at 50% 0%, rgba(80, 110, 255, 0.20), transparent 70%),
+        radial-gradient(ellipse 40% 100% at 85% 0%, rgba(90, 200, 200, 0.15), transparent 70%);
+}
 /* =========================================================
    05. MAP + DESTINATIONS
    ========================================================= */

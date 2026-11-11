@@ -94,7 +94,7 @@ Problems I ran into while building and deploying, and how I fixed them.
 
 ## Roadmap
 
-- [x] Desktop home page
+- [x] Desktop home page (desktop)
 - [x] About page (desktop)
 - [x] Deploy to GitHub Pages
 - [ ] Compress images for faster loading
