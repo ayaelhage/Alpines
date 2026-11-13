@@ -64,21 +64,20 @@ header nav ul li:has(a[aria-current="page"])::after {
 }
 
 .explore-hero-right {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;           /* window sits on the right side of the card */
     justify-content: center;
-    padding: 32px;
-    text-align: center;
+    padding: 40px 44px;
 
     background-color: var(--window-bg);
     border-radius: 24px;
-    transition: background-color 0.6s ease;
 }
 
 .explore-title {
     max-width: none;
-    margin: 0 0 20;
+    margin: 0 0 10px;
     text-wrap: balance;
 
     font-family: var(--font-title);
@@ -130,7 +129,7 @@ header nav ul li:has(a[aria-current="page"])::after {
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    color: #9fd8ff;
+    color: #ffffff;
 }
 
 .board-title {
@@ -151,7 +150,7 @@ header nav ul li:has(a[aria-current="page"])::after {
 .board-clock {
     padding: 2px 14px;
     font-size: clamp(18px, 2vw, 28px);
-    color: #9fd8ff;
+    color: #ffffff;
     border: 1px solid rgba(236, 229, 216, 0.45);
     border-radius: 8px;
 }
@@ -226,20 +225,25 @@ header nav ul li:has(a[aria-current="page"])::after {
 
 /* =========================================================
    04. PLANE WINDOW
-   Shape = rounded rectangle with a big radius.
-   Change border-radius to make it more / less oval.
    ========================================================= */
 
+/* "Now arriving": top-left corner of the card, stacked on two lines */
 .window-kicker {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 0 20px;
+    position: absolute;
+    top: 36px;
+    left: 36px;
+    z-index: 3;
 
-    font-family: 'Manrope', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: min-content;              /* makes the words wrap one per line */
+
+    font-family: 'DotGothic16', monospace;
+    font-size: clamp(16px, 1.5vw, 22px);
+    line-height: 1.05;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 
     color: var(--cream);
@@ -247,71 +251,136 @@ header nav ul li:has(a[aria-current="page"])::after {
 
 .window-kicker::before {
     content: "";
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: var(--red);
+    animation: beep 1.4s infinite;
 }
 
+@keyframes beep {
+    0%, 49%   { opacity: 1;    box-shadow: 0 0 10px var(--red); }
+    50%, 100% { opacity: 0.15; box-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .window-kicker::before { animation: none; }
+}
+
+/* The frame (the plastic bezel around the glass) */
 .window {
-    display: none;   /* window comes back in a later step */
     position: relative;
-    width: clamp(200px, 19vw, 280px);
+    flex-shrink: 0;                      /* never let the card squash it */
+    width: clamp(260px, 25vw, 380px);
     aspect-ratio: 3 / 4;
-    padding: 12px;
+    padding: 14px;                       /* thickness of the bezel */
     box-sizing: border-box;
 
-    border-radius: 48% / 36%;
-    background: linear-gradient(160deg, #c9d2dc, #7d8a99);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border-radius: 50% / 37.5%;          /* on a 3:4 box this is a perfect stadium */
+    background: linear-gradient(160deg, #eef0f3, #b4bbc6 55%, #8e97a5);
+    box-shadow:
+        0 0 0 10px rgba(255, 255, 255, 0.07),       /* faint outer ring: the cabin wall recess */
+        0 0 0 11px rgba(0, 0, 0, 0.25),
+        inset 0 3px 4px rgba(255, 255, 255, 0.7),   /* light catching the top edge */
+        inset 0 -4px 8px rgba(0, 0, 0, 0.25),       /* shadow on the bottom edge */
+        0 28px 60px rgba(0, 0, 0, 0.5);
+
+    transform: rotate(-4deg);            /* tilt: negative = to the left */
 }
 
+/* The glass: everything inside is cut to this shape */
+.window-glass {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50% / 37.5%;
+
+    /* thin inner ring between the bezel and the glass */
+    box-shadow: 0 0 0 5px #7c8696, 0 0 0 7px rgba(255, 255, 255, 0.35);
+}
+
+/* The photo fills the glass but does NOT affect its size (position: absolute) */
 .window-img {
-    display: block;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 46% / 34%;
+    transition: opacity 0.3s ease;
 }
 
-/* soft shine + inner shadow on the glass */
-.window::after {
+/* Shine and inner shadow on top of the photo */
+.window-glass::after {
     content: "";
     position: absolute;
-    inset: 12px;
-    border-radius: 46% / 34%;
+    inset: 0;
     pointer-events: none;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 40%);
     box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.45);
+}
+
+/* The shade: parked above the glass, slides down when closed */
+.window-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    background:
+        repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0 2px, transparent 2px 12px),
+        linear-gradient(180deg, #efe9df, #d2cabb);
+
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.6, 0.05, 0.2, 1);
+}
+
+/* small pull handle at the bottom of the shade */
+.window-shade::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    width: 44px;
+    height: 8px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.18);
+    transform: translateX(-50%);
+}
+
+.window.is-closed .window-shade {
+    transform: translateY(0);
+}
+
+/* Button: bottom-left corner of the card */
+.window-toggle {
+    position: absolute;
+    left: 36px;
+    bottom: 36px;
+    z-index: 3;
+
+    padding: 8px 18px;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    color: var(--cream);
+    background: transparent;
+    border: 1px solid rgba(236, 229, 216, 0.45);
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.window-toggle:hover {
+    background: rgba(236, 229, 216, 0.1);
 }
 
 .country-name,
 .country-tagline {
     display: none;   /* kept in the HTML only so explore.js does not break */
 }
-
-.country-name {
-    margin-top: 24px;
-    padding-bottom: 0;
-
-    font-family: var(--font-title);
-    font-size: var(--title-size);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    text-transform: none;
-
-    color: #fff;
-}
-
-.country-tagline {
-    max-width: 34ch;
-    margin-top: 8px;
-    font-size: 16px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.78);
-}
-
 
 /* =========================================================
    05. SELECTED COUNTRY + MAP
@@ -357,12 +426,37 @@ header nav ul li:has(a[aria-current="page"])::after {
 .explore-map {
     width: 100%;
     height: clamp(360px, 55vh, 560px);
-
-    background: #0b1330;
+    position: relative;
+    isolation: isolate;
+    background: #0d2347;
     border-radius: 16px;
     overflow: hidden;
 }
 
+/* the map picture only: soft navy tint */
+/* the map picture only: a faint drawing over the card-coloured background */
+.explore-map .leaflet-tile-pane {
+    filter: grayscale(1) invert(1) sepia(1) hue-rotate(180deg) saturate(3) brightness(2.4);
+    opacity: 0.22;
+}
+/* numbered circle for each stop, like in your references */
+.stop-marker span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+
+    background: var(--red);
+    border: 3px solid #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
 
 /* =========================================================
    06. RESPONSIVE  (full mobile pass comes later)
